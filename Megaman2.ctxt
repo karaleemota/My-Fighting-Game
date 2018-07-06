@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.target=Megaman2
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ megaman\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=void\ act()
+comment2.params=
+comment2.target=Megaman2()
+comment3.params=world
+comment3.target=void\ addedToWorld(greenfoot.World)
+comment4.params=height
+comment4.target=void\ jump(int)
+comment5.params=
+comment5.target=Bar\ getHealthBar()
+comment6.params=
+comment6.target=void\ heavyAttack()
+comment7.params=
+comment7.target=void\ labelFollow()
+comment8.params=speed\ damage
+comment8.target=void\ shoot(int,\ int)
+numComments=9

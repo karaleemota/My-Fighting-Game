@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=SelectCharacter
+comment1.params=
+comment1.target=SelectCharacter()
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=greenfoot.GreenfootSound\ getbgmusic()
+comment4.params=
+comment4.target=void\ enterCountDown()
+comment5.params=
+comment5.target=boolean\ isClicked()
+comment6.params=
+comment6.target=boolean\ mouseOnScreen()
+comment7.params=icon
+comment7.target=void\ dragIcon(greenfoot.Actor)
+comment8.params=
+comment8.target=void\ p1CursorCharacter()
+comment9.params=
+comment9.target=void\ p2CursorCharacter()
+numComments=10

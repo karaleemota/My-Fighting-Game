@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Player1Wins
+comment0.text=\r\n\ The\ ScoreBoard\ is\ used\ to\ display\ results\ on\ the\ screen.\ It\ can\ display\ some\r\n\ text\ and\ several\ numbers.\r\n\ \r\n\ @author\ M\ Kolling\r\n\ @version\ 1.0\r\n
+comment1.params=
+comment1.target=Player1Wins()
+comment1.text=\r\n\ Create\ a\ score\ board\ with\ dummy\ result\ for\ testing.\r\n
+comment2.params=score
+comment2.target=Player1Wins(int)
+comment2.text=\r\n\ Create\ a\ score\ board\ for\ the\ final\ result.\r\n
+comment3.params=title
+comment3.target=void\ makeImage(java.lang.String)
+comment3.text=\r\n\ Make\ the\ score\ board\ image.\r\n
+numComments=4
