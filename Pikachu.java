@@ -55,6 +55,8 @@ public class Pikachu extends Fighter
         leftJump1 = new GreenfootImage("pikachuLeftJump1.png");
         punchSound = new GreenfootSound("pikachuPunch.wav");
         setImage(rightStand1);
+        
+        specialAttackTrue = false;//tells when s.a key has been pressed from fighter class
         moveSpeed = 6;
         moveCounter2 = 0;
         p1 = new P1();

@@ -65,6 +65,7 @@ public class Megajoel extends Fighter
         setImage(rightStand1);
         moveSpeed = 5;
         moveCounter1 = 0;
+        specialAttackTrue = false;//tells when s.a key has been pressed from fighter class
         p1 = new P1();
         healthBar = (new Bar("Joel","HP",100,100));
     }

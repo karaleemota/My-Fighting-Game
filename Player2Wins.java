@@ -12,7 +12,7 @@ import java.util.Calendar;
 public class Player2Wins extends Actor
 {
     public static final float FONT_SIZE = 48.0f;
-    public static final int WIDTH = 400;
+    public static final int WIDTH = 400; 
     public static final int HEIGHT = 300;
     
     /**

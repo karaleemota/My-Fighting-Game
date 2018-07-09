@@ -1,6 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.lang.Math;//math needed to calculate angle bomb is thrown at
-
+ 
 /**
  * Write a description of class Bomb here.
  * 
@@ -155,7 +155,7 @@ public class Bomb extends Actor
     }
     protected void hitOpponent()
     {
-        if(removed == false)
+        if(removed == false && exploded == false)
         {
             opponent = (Fighter2)getOneIntersectingObject(Fighter2.class);
             if(opponent!=null)

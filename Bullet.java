@@ -1,23 +1,22 @@
-//Author: Karalee Mota
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * Write a description of class Bullet here.
  * 
- * @author (your name) 
+ * @author Karalee Mota
  * @version (a version number or a date)
  */
 public class Bullet extends Actor
 {
-    protected GreenfootImage bulletRight;
-    protected GreenfootImage bulletLeft;
-    protected GreenfootImage bulletHit1;
-    protected GreenfootImage bulletHit2;
-    protected GreenfootImage bulletHit3;
+    static protected GreenfootImage bulletRight = new GreenfootImage("bulletRight.png");
+    static protected GreenfootImage bulletLeft = new GreenfootImage("bulletLeft.png");
+    static protected GreenfootImage bulletHit1 = new GreenfootImage("bulletHit1.png");
+    static protected GreenfootImage bulletHit2 = new GreenfootImage("bulletHit2.png");
+    static protected GreenfootImage bulletHit3 = new GreenfootImage("bulletHit3.png");
     private boolean removed;
     int speed = 0;
     Fighter2 opponent;
-    int x = 0; //used to slow down bullet hitting animation
+    char x = 0; //used to slow down bullet hitting animation
     /**
      * Act - do whatever the Bullet wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -28,13 +27,9 @@ public class Bullet extends Actor
         checkBorder();
         hit();
     }    
+
     public Bullet(int inspeed)
     {
-        bulletRight = new GreenfootImage("bulletRight.png");
-        bulletLeft = new GreenfootImage("bulletLeft.png");
-        bulletHit1 = new GreenfootImage("bulletHit1.png");
-        bulletHit2 = new GreenfootImage("bulletHit2.png");
-        bulletHit3 = new GreenfootImage("bulletHit3.png");
         speed = inspeed;
         removed = false;
         if(speed > 0 )
@@ -46,19 +41,21 @@ public class Bullet extends Actor
             setImage(bulletLeft);
         }
     }
+
     public void removeMe()//remove bullet from world
     {
         getWorld().removeObject(this);
         removed = true;
     }
+
     public void checkBorder()//removes bullet if it hits end of world
     {
-       if(removed == false)
-       {
-           if (getX() == 599)
-           {
-               removeMe();
-               removed = true;
+        if(removed == false)
+        {
+            if (getX() == 599)
+            {
+                removeMe();
+                removed = true;
             }
             else if (getX() == 0)
             {
@@ -67,9 +64,10 @@ public class Bullet extends Actor
             }
         }
     }
+
     public void hit()
     {
-        x = x + 1;
+        x++;
         if(removed == false)
         {
             opponent = (Fighter2)getOneIntersectingObject(Fighter2.class);
@@ -84,14 +82,14 @@ public class Bullet extends Actor
                     }
                 }
                 if( getImage() == bulletHit1)
-                    {
-                        setImage(bulletHit2);
-                    }
-                    else if( getImage() == bulletHit2)
-                    {
-                        setImage(bulletHit3);
-                        removeMe();
-                    }
+                {
+                    setImage(bulletHit2);
+                }
+                else if( getImage() == bulletHit2)
+                {
+                    setImage(bulletHit3);
+                    removeMe();
+                }
                 x = 0;
             }
         }

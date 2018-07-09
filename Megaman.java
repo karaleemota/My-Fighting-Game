@@ -72,10 +72,12 @@ public class Megaman extends Fighter
         leftJump2 = new GreenfootImage("megamanLeftJump2.png");
         leftJump3 = new GreenfootImage("megamanLeftJump3.png");
         megamanBuster = new GreenfootSound("megamanBuster.wav");
-        moveCounter2 = 0;
         setImage(rightStand1);
+        
         moveSpeed = 5;
         moveCounter1 = 0;
+        moveCounter2 = 0;
+        specialAttackTrue = false;//tells when s.a key has been pressed from fighter class
         p1 = new P1();
         healthBar = (new Bar("megaman","HP",100,100));
     }
@@ -86,7 +88,6 @@ public class Megaman extends Fighter
     }
     public void jump(int height)
     {
-          
           if(Greenfoot.isKeyDown("w") )
           {
               if(isFacedRight())

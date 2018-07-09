@@ -3,8 +3,8 @@ import greenfoot.*;
 /**
  * Write a description of class Link here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Karalee Mota
+ * @version 7/1/18
  */
 public class Link extends Fighter
 {
@@ -105,9 +105,11 @@ public class Link extends Fighter
         punchSound = new GreenfootSound("linkPunch.wav");
         linkSwingSword = new GreenfootSound("linkSwingSword.wav");
         setImage(rightStand1);
+        
         moveSpeed = 5;
         moveCounter2 = 0;
         carryingBomb = false;//not carrying bom when starting
+        specialAttackTrue = false;//tells when s.a key has been pressed from fighter class
         p1 = new P1();
         counter = 0;
         healthBar = (new Bar("Link","HP",100,100));

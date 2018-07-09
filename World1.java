@@ -19,7 +19,7 @@ public class World1 extends World
     }
     public void startMusic()
     {
-        bgmusic.setVolume(65);
+        bgmusic.setVolume(60);
         bgmusic.playLoop();
     }
     public GreenfootSound getbgmusic()

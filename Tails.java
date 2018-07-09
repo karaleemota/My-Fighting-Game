@@ -66,6 +66,8 @@ public class Tails extends Fighter
         leftFly4 = new GreenfootImage("tailsLeftFly4.gif");
         punchSound = new GreenfootSound("tailsPunch.wav");
         setImage(rightStand1);
+        
+        specialAttackTrue = false;//tells when s.a key has been pressed from fighter class
         moveSpeed = 5;
         p1 = new P1();
         healthBar = (new Bar("Tails","HP",100,100));
@@ -85,7 +87,7 @@ public class Tails extends Fighter
               {
                    setLocation(getX(),getY()-height);
                    flyCounter2 = 0;
-                }
+              }
               flyCounter++;
               if(flyCounter == 7)
                 {

@@ -20,6 +20,7 @@ public class SelectCharacter extends World
     CharacterPortrait marioPortrait = new MarioPortrait();
     CharacterPortrait gokuPortrait = new GokuPortrait();
     CharacterPortrait mrIncrediblePortrait = new MrIncrediblePortrait();
+    Instructions instructions = new Instructions();
     public SelectCharacter()
     {    
         super(625, 450, 1);
@@ -33,9 +34,10 @@ public class SelectCharacter extends World
         addObject(linkPortrait,500,375);
         addObject(pikachuPortrait,100,227);
         addObject(megamanPortrait,300,227);
-        addObject(marioPortrait,547,233);
+        //addObject(marioPortrait,547,233);
         addObject(gokuPortrait,100,375);
         addObject(mrIncrediblePortrait,300,375);
+        addObject(instructions,506,233);
         clicked = false;        
     }
     public void act()

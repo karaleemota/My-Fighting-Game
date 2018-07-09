@@ -57,6 +57,8 @@ public class MrIncredible extends Fighter
         leftJump2 = new GreenfootImage("mrIncredibleLeftJump2.png");
         leftJump3 = new GreenfootImage("mrIncredibleLeftJump3.png");
         punchSound = new GreenfootSound("knucklesPunch.wav");
+        
+        specialAttackTrue = false;//tells when s.a key has been pressed from fighter class
         moveSpeed = 4;
         p1 = new P1();
         healthBar = (new Bar("Mr. Incredible","HP",100,100));

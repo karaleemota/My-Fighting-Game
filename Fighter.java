@@ -38,6 +38,7 @@ public abstract class Fighter extends Actor
     private int x;
     protected int lightAttackCnt = 0;//used to keep track of light attack
     protected boolean lightAttackTrue;//bool to determine if player is doing a light attack
+    protected boolean specialAttackTrue;//bool to determine if player is doing s.a. so animations dont conflict
     private int moveCounter1;
     private int moveCounter2;
     private int moveCounter3;
@@ -65,7 +66,7 @@ public abstract class Fighter extends Actor
     }
     protected void moveRight(int speed)
     {
-        if(Greenfoot.isKeyDown("d") && !Greenfoot.isKeyDown("p") && !lightAttackTrue)
+        if(Greenfoot.isKeyDown("d") && !Greenfoot.isKeyDown("p") && !lightAttackTrue && !specialAttackTrue)
         {
            setLocation(getX()+speed,getY());
            if(isOnGround() && isFacedRight())
@@ -96,7 +97,7 @@ public abstract class Fighter extends Actor
     }
     protected void moveLeft(int speed)
     {
-        if(Greenfoot.isKeyDown("a") && !Greenfoot.isKeyDown("p") && !lightAttackTrue)
+        if(Greenfoot.isKeyDown("a") && !Greenfoot.isKeyDown("p") && !lightAttackTrue && !specialAttackTrue)
         {
             setLocation(getX()-speed,getY());
             if(isOnGround() && isFacedRight()==false)
@@ -249,7 +250,7 @@ public abstract class Fighter extends Actor
         if (x == 8)
         {
             if(isOnGround() && isFacedRight() && !Greenfoot.isKeyDown("d") && !Greenfoot.isKeyDown("p")
-               && !Greenfoot.isKeyDown("a") && !lightAttackTrue)
+               && !Greenfoot.isKeyDown("a") && !lightAttackTrue && !specialAttackTrue)
             {
                 if (getImage() == rightStand1 )
                 {
@@ -266,7 +267,7 @@ public abstract class Fighter extends Actor
             }
             
             else if(isOnGround() && !isFacedRight() && !Greenfoot.isKeyDown("a") && !Greenfoot.isKeyDown("p")
-                    && !Greenfoot.isKeyDown("d") && !lightAttackTrue)
+                    && !Greenfoot.isKeyDown("d") && !lightAttackTrue && !specialAttackTrue)
             {
                 if (getImage() == leftStand1 )
                 {

@@ -1,9 +1,8 @@
 #BlueJ class context
 comment0.target=Goku
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Goku\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Goku\ here.\r\n\ \r\n\ @author\ Karalee\ Mota\r\n\ @version\ 7/8/18\r\n
 comment1.params=
 comment1.target=void\ act()
-comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ Sonic\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
 comment2.params=
 comment2.target=Goku()
 comment3.params=height

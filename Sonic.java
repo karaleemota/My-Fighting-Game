@@ -63,6 +63,8 @@ public class Sonic extends Fighter
         leftJump3 = new GreenfootImage("sonicLeftJump3.gif");
         punchSound = new GreenfootSound("sonicPunch.wav");
         setImage(rightStand1);
+        
+        specialAttackTrue = false;//tells when s.a key has been pressed from fighter class
         moveSpeed = 7;
         p1 = new P1();
         healthBar = (new Bar("Sonic","HP",100,100));

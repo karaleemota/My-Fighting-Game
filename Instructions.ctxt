@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Instructions
+comment1.params=
+comment1.target=Instructions()
+comment1.text=\r\n\ Create\ a\ score\ board\ with\ dummy\ result\ for\ testing.\r\n
+comment2.params=title
+comment2.target=void\ makeImage(java.lang.String)
+comment2.text=\r\n\ Make\ the\ score\ board\ image.\r\n
+numComments=3

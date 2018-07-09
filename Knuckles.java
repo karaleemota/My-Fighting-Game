@@ -57,6 +57,8 @@ public class Knuckles extends Fighter
         leftJump2 = new GreenfootImage("knucklesLeftJump2.png");
         leftJump3 = new GreenfootImage("knucklesLeftJump3.png");
         punchSound = new GreenfootSound("knucklesPunch.wav");
+        
+        specialAttackTrue = false;//tells when s.a key has been pressed from fighter class
         moveSpeed = 4;
         p1 = new P1();
         healthBar = (new Bar("Knuckles","HP",100,100));
