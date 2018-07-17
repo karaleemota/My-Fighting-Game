@@ -32,7 +32,7 @@ public class Bullet extends Actor
     {
         speed = inspeed;
         removed = false;
-        if(speed > 0 )
+        if(speed >= 0 )
         {
             setImage(bulletRight);
         }

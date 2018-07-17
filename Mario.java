@@ -58,6 +58,7 @@ public class Mario extends Fighter
         leftJump3 = new GreenfootImage("marioLeftJump3.png");        
         punchSound = new GreenfootSound("marioPunch.wav");
         
+        setImage(rightStand1);
         specialAttackTrue = false;//tells when s.a key has been pressed from fighter class
         moveSpeed = 5; 
         p1 = new P1();

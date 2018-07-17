@@ -8,15 +8,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class IntroScreen extends World
 {
-   
-    /**
-     * Constructor for objects of class IntroScreen.
-     * 
-     */
+    static GreenfootImage introScreenImage = new GreenfootImage("2.jpg");
     public IntroScreen()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(625, 450, 1); 
+        setBackground(introScreenImage);
     }
     
     public void act()
@@ -28,7 +25,5 @@ public class IntroScreen extends World
             Greenfoot.playSound("enter.wav");
             Greenfoot.setWorld(new SelectCharacter());
         }
-        
-        
     }
 }

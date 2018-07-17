@@ -8,12 +8,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class GokuPortrait extends CharacterPortrait
 {
-    /**
-     * Act - do whatever the GokuPortrait wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    static GreenfootImage gokuPortraitImage = new GreenfootImage("gokuPortrait.png");
     public void act() 
     {
         // Add your action code here.
     }    
+    public GokuPortrait()
+    {
+        setImage(gokuPortraitImage);
+    }
 }

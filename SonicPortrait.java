@@ -8,11 +8,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class SonicPortrait extends CharacterPortrait
 {
-    public SonicPortrait()
-    {
-    }
+    static GreenfootImage sonicPortraitImage = new GreenfootImage("sonicPortrait.png");
     public void act() 
     {
         // Add your action code here.
     }    
+    public SonicPortrait()
+    {
+        setImage(sonicPortraitImage);
+    }  
 }

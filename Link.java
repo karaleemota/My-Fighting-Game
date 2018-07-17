@@ -72,6 +72,7 @@ public class Link extends Fighter
         fallOffEdge();
         Player2Wins();
     }    
+
     public Link()
     {
         rightStand1 = linkRightStand1;
@@ -105,7 +106,7 @@ public class Link extends Fighter
         punchSound = new GreenfootSound("linkPunch.wav");
         linkSwingSword = new GreenfootSound("linkSwingSword.wav");
         setImage(rightStand1);
-        
+
         moveSpeed = 5;
         moveCounter2 = 0;
         carryingBomb = false;//not carrying bom when starting
@@ -114,15 +115,18 @@ public class Link extends Fighter
         counter = 0;
         healthBar = (new Bar("Link","HP",100,100));
     }
+
     protected void addedToWorld(World world)
     {
         world.addObject(healthBar, 125, 30);
         world.addObject(p1,getX(),getY()-getImage().getHeight()/2-15);
     }
+
     public Bar getHealthBar()
     {
         return healthBar;
     }
+
     public  void lightAttack(int speed, int damage)//can only swing sword if not carrying bomb
     {
         if(Greenfoot.isKeyDown("p") && !carryingBomb)
@@ -187,22 +191,36 @@ public class Link extends Fighter
                 lightAttackTrue =false;
             }         
         }
-        }
+    }
+
     public void jump(int height)
     {
-          if(Greenfoot.isKeyDown("w") && !carryingBomb)//cant jump while carrying bomb
-          {
-              if(isFacedRight())
-                {
-                      setImage(rightJump1);
-                }
-                else if(!isFacedRight())
-                {
-                     setImage(leftJump1);
-                }
-              setLocation(getX(),getY()-height);
-          }
+        
+        if(Greenfoot.isKeyDown("w") && !carryingBomb)//cant jump while carrying bomb
+        {
+            if(isFacedRight())
+            {
+                setImage(rightJump1);
+            }
+            else if(!isFacedRight())
+            {
+                setImage(leftJump1);
+            }
+            setLocation(getX(),getY()-height);
+        }
+        else if(!isOnGround() && !specialAttackTrue && !lightAttackTrue)//animate falling off ledge
+        {
+            if(isFacedRight())
+            {
+                setImage(rightJump1);
+            }
+            else
+            {
+                setImage(leftJump1);
+            }
+        }
     }
+
     public void specialAttack()
     {
         bombTimer++;
@@ -212,7 +230,7 @@ public class Link extends Fighter
             {
                 carryingBomb = true;//now carryin bomb
                 linkBombDeploySound.play();//sound effect to take out bomb
-                
+
                 //change images so he's carrying bomb
                 rightStand1 = linkRightStandBomb1;
                 rightStand2 = linkRightStandBomb2;
@@ -226,7 +244,7 @@ public class Link extends Fighter
                 moveLeft1 = linkMoveLeftBomb1;
                 moveLeft2 = linkMoveLeftBomb2;
                 moveLeft3 = linkMoveLeftBomb3;
-                
+
                 bombTimer = 0;
             }
             else if(carryingBomb && bombTimer > 30)//is carrying bomb, so throw it
@@ -253,11 +271,12 @@ public class Link extends Fighter
                 moveLeft1 = linkMoveLeft1;
                 moveLeft2 = linkMoveLeft2;
                 moveLeft3 = linkMoveLeft3;
-                
+
                 bombTimer = 0;
             }
         }
     }
+
     private void throwBomb()//helps animate link throwing bomb
     {
         if(throwBomb == true)
@@ -267,41 +286,42 @@ public class Link extends Fighter
             {   
                 if(moveCounter3 == 5)
                 {
-                   getWorld().addObject(new Bomb(true,10,16), this.getX()+43, this.getY()-41);
-                   setImage(linkRightThrow2);
+                    getWorld().addObject(new Bomb(true,10,16), this.getX()+43, this.getY()-41);
+                    setImage(linkRightThrow2);
                 }
                 else if(moveCounter3 == 10)
                 {
-                   setImage(linkRightThrow3);
-                   moveCounter3 = 0;
-                   throwBomb = false;
-                   carryingBomb = false;//bomb has been thrown
+                    setImage(linkRightThrow3);
+                    moveCounter3 = 0;
+                    throwBomb = false;
+                    carryingBomb = false;//bomb has been thrown
                 }
             }
             else//faced left so make bomb facing left
             {
                 if(moveCounter3 == 5)
                 {
-                   getWorld().addObject(new Bomb(false,10,16), this.getX()-43, this.getY()-41);
-                   setImage(linkLeftThrow2);
+                    getWorld().addObject(new Bomb(false,10,16), this.getX()-43, this.getY()-41);
+                    setImage(linkLeftThrow2);
                 }
                 else if(moveCounter3 == 10)
                 {
-                   setImage(linkLeftThrow3);
-                   moveCounter3 = 0;
-                   throwBomb = false;
-                   carryingBomb = false;//bomb has been thrown
+                    setImage(linkLeftThrow3);
+                    moveCounter3 = 0;
+                    throwBomb = false;
+                    carryingBomb = false;//bomb has been thrown
                 }
             }
         }
     }
+
     protected void animate()
     {
         x++;
         if (x == 8)
         {
             if(isOnGround() && isFacedRight() && !Greenfoot.isKeyDown("d") && !Greenfoot.isKeyDown("p")
-               && !Greenfoot.isKeyDown("a") && !lightAttackTrue && !throwBomb)
+            && !Greenfoot.isKeyDown("a") && !lightAttackTrue && !throwBomb)
             {
                 if (getImage() == rightStand1 )
                 {
@@ -316,9 +336,9 @@ public class Link extends Fighter
                     setImage(rightStand1);
                 }
             }
-            
+
             else if(isOnGround() && !isFacedRight() && !Greenfoot.isKeyDown("a") && !Greenfoot.isKeyDown("p")
-                    && !Greenfoot.isKeyDown("d") && !lightAttackTrue && !throwBomb)
+            && !Greenfoot.isKeyDown("d") && !lightAttackTrue && !throwBomb)
             {
                 if (getImage() == leftStand1 )
                 {
@@ -336,6 +356,7 @@ public class Link extends Fighter
             x = 0;
         }
     }
+
     public void labelFollow()
     {
         if(facedRight == true)

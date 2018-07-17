@@ -8,15 +8,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class TailsPortrait extends CharacterPortrait
 {
-    public TailsPortrait()
-    {
-    }    
-    /**
-     * Act - do whatever the TailsPortrait wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    static GreenfootImage tailsPortraitImage = new GreenfootImage("tailsPortrait.png");
     public void act() 
     {
         // Add your action code here.
     }    
+    public TailsPortrait()
+    {
+        setImage(tailsPortraitImage);
+    }   
 }

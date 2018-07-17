@@ -43,6 +43,7 @@ public class Megaman extends Fighter
         fallOffEdge();
         Player2Wins();
     }    
+
     public Megaman()
     {
         rightStand1 = new GreenfootImage("megamanRightStand1.png");
@@ -73,7 +74,7 @@ public class Megaman extends Fighter
         leftJump3 = new GreenfootImage("megamanLeftJump3.png");
         megamanBuster = new GreenfootSound("megamanBuster.wav");
         setImage(rightStand1);
-        
+
         moveSpeed = 5;
         moveCounter1 = 0;
         moveCounter2 = 0;
@@ -81,77 +82,94 @@ public class Megaman extends Fighter
         p1 = new P1();
         healthBar = (new Bar("megaman","HP",100,100));
     }
+
     protected void addedToWorld(World world)
     {
         world.addObject(healthBar, 125, 30);
         world.addObject(p1,getX(),getY()-getImage().getHeight()/2-15);
     }
+
     public void jump(int height)
     {
-          if(Greenfoot.isKeyDown("w") )
-          {
-              if(isFacedRight())
+        if(Greenfoot.isKeyDown("w") )
+        {
+            if(isFacedRight())
+            {
+                moveCounter1++;
+                if(moveCounter1 == 6 )
                 {
-                    moveCounter1++;
-                    if(moveCounter1 == 6 )
-                     {
-                        if ((getImage()  != rightJump1 && getImage() !=rightJump2 && getImage() != rightJump3) || isOnGround())
-                        {
-                            setImage(rightJump1);
-                        }
-                        else if (getImage() == rightJump1 )
-                        {
-                            setImage(rightJump2);
-                        }
-                        else if(getImage() == rightJump2 )
-                        {
-                            setImage(rightJump3);
-                        }
-                        else if ( getImage() != rightJump3 )
-                        {
-                            setImage(rightJump1);
-                        }
-                        moveCounter1 = 0;
-                    }
-                }
-                else if(!isFacedRight())
-                {
-                    moveCounter1++;
-                    if(moveCounter1 == 6 )
+                    if ((getImage()  != rightJump1 && getImage() !=rightJump2 && getImage() != rightJump3) || isOnGround())
                     {
-                        if ((getImage()  != leftJump1 && getImage() !=leftJump2 && getImage() != leftJump3) || isOnGround())
-                        {
-                            setImage(leftJump1);
-                        }
-                        else if (getImage() == leftJump1 )
-                        {
-                            setImage(leftJump2);
-                        }
-                        else if(getImage() == leftJump2 )
-                        {
-                            setImage(leftJump3);
-                        }
-                        else if ( getImage() != leftJump3 )
-                        {
-                            setImage(leftJump1);
-                        }
-                        moveCounter1 = 0;
+                        setImage(rightJump1);
                     }
+                    else if (getImage() == rightJump1 )
+                    {
+                        setImage(rightJump2);
+                    }
+                    else if(getImage() == rightJump2 )
+                    {
+                        setImage(rightJump3);
+                    }
+                    else if ( getImage() != rightJump3 )
+                    {
+                        setImage(rightJump1);
+                    }
+                    moveCounter1 = 0;
                 }
-              setLocation(getX(),getY()-height);
-          }
+            }
+            else if(!isFacedRight())
+            {
+                moveCounter1++;
+                if(moveCounter1 == 6 )
+                {
+                    if ((getImage()  != leftJump1 && getImage() !=leftJump2 && getImage() != leftJump3) || isOnGround())
+                    {
+                        setImage(leftJump1);
+                    }
+                    else if (getImage() == leftJump1 )
+                    {
+                        setImage(leftJump2);
+                    }
+                    else if(getImage() == leftJump2 )
+                    {
+                        setImage(leftJump3);
+                    }
+                    else if ( getImage() != leftJump3 )
+                    {
+                        setImage(leftJump1);
+                    }
+                    moveCounter1 = 0;
+                }
+            }
+            setLocation(getX(),getY()-height);
+        }
+        else if(!isOnGround() && !specialAttackTrue && !lightAttackTrue && getImage()!=rightJump3 && getImage()!=leftJump3)
+        {//animate falling off ledge
+            if(isFacedRight())
+            {
+                setImage(rightJump2);
+            }
+            else
+            {
+                setImage(leftJump2);
+            }
+        }
     }
+
     public Bar getHealthBar()
     {
         return healthBar;
     }
+
     public void specialAttack()
     {
     }
+
     public void labelFollow()
     {
         p1.setLocation(this.getX(),this.getY()-getImage().getHeight()/2-15);
     }
+
     public  void shoot(int speed, int damage)
     {
         if(Greenfoot.isKeyDown("p"))
@@ -208,7 +226,7 @@ public class Megaman extends Fighter
                 lightAttackTrue =false;
             }         
         }
-      
+
     }
 }
 

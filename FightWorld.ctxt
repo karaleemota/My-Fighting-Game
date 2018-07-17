@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=FightWorld
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ FightWorld\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=x\ y\ cellSize
+comment1.target=FightWorld(int,\ int,\ int)
+comment2.params=
+comment2.target=void\ startMusic()
+comment3.params=
+comment3.target=greenfoot.GreenfootSound\ getbgmusic()
+comment4.params=
+comment4.target=void\ stopMusic()
+numComments=5

@@ -8,12 +8,13 @@ import greenfoot.*;
  */ 
 public class PlatformBottom extends Platform
 {
-    /**
-     * Act - do whatever the Grass wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    static GreenfootImage world1PlatformBottom = new GreenfootImage("world1PlatformBottom.png");
     public void act() 
     {
         // Add your action code here.
-    }    
+    }  
+    PlatformBottom()
+    {
+        setImage(world1PlatformBottom);
+    }
 }

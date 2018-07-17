@@ -8,13 +8,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Cursor2 extends Actor
 {
-    /**
-     * Act - do whatever the Cursor2 wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    static GreenfootImage cursor2Image = new GreenfootImage("p2circle.PNG");
     public void act() 
     {
     }    
+    public Cursor2()
+    {
+        setImage(cursor2Image); 
+    }
     public CharacterPortrait getP2Cursor()
     {
        CharacterPortrait characterPortrait = (CharacterPortrait)getOneIntersectingObject(CharacterPortrait.class);

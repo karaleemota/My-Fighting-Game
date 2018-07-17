@@ -294,7 +294,7 @@ public abstract class Fighter extends Actor
     }
     public void Player2Wins()
     {
-        World1 w = (World1)getWorld();
+        FightWorld w = (FightWorld)getWorld();
         if(healthBar.getValue() == 0)
         {
             if(addedObject == false)

@@ -8,12 +8,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MrIncrediblePortrait extends CharacterPortrait
 {
-    /**
-     * Act - do whatever the MrIncrediblePortrait wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    static GreenfootImage mrIncrediblePortraitImage = new GreenfootImage("mrIncrediblePortrait.png");
     public void act() 
     {
         // Add your action code here.
     }    
+    public MrIncrediblePortrait()
+    {
+        setImage(mrIncrediblePortraitImage);
+    }
 }

@@ -3,31 +3,34 @@ import greenfoot.*;
 public class SelectCharacter extends World
 {
     private int enterCounter;
-    private boolean isGrabbed;
-    private GreenfootSound cursorSound;
-    private GreenfootSound bgmusic = new GreenfootSound("meleeMenu1.mp3");
+    private boolean isGrabbed = false;
+    static public GreenfootSound cursorSound = new GreenfootSound("cursor.wav");//sound when cursor is grabbed
+    static public GreenfootSound bgmusic = new GreenfootSound("meleeMenu1.mp3");
+    static GreenfootImage selectCharBackground = new GreenfootImage("Super_Smash_Bros_Lawl_Poster_Background.png");
     private boolean clicked; 
     private MouseInfo mouse;
-    World world1;
-    Cursor cursor = new Cursor();
-    Cursor2 cursor2 = new Cursor2();
-    CharacterPortrait sonicPortrait = new SonicPortrait();
-    CharacterPortrait tailsPortrait = new TailsPortrait();
-    CharacterPortrait knucklesPortrait = new KnucklesPortrait();
-    CharacterPortrait linkPortrait = new LinkPortrait();
-    CharacterPortrait pikachuPortrait = new PikachuPortrait();
-    CharacterPortrait megamanPortrait = new MegamanPortrait();
-    CharacterPortrait marioPortrait = new MarioPortrait();
-    CharacterPortrait gokuPortrait = new GokuPortrait();
-    CharacterPortrait mrIncrediblePortrait = new MrIncrediblePortrait();
+    World selectWorld = new SelectWorld();
+    static Cursor cursor = new Cursor();
+    static Cursor2 cursor2 = new Cursor2();
+    static CharacterPortrait sonicPortrait = new SonicPortrait();
+    static CharacterPortrait tailsPortrait = new TailsPortrait();
+    static CharacterPortrait knucklesPortrait = new KnucklesPortrait();
+    static CharacterPortrait linkPortrait = new LinkPortrait();
+    static CharacterPortrait pikachuPortrait = new PikachuPortrait();
+    static CharacterPortrait megamanPortrait = new MegamanPortrait();
+    static CharacterPortrait marioPortrait = new MarioPortrait();
+    static CharacterPortrait gokuPortrait = new GokuPortrait();
+    static CharacterPortrait mrIncrediblePortrait = new MrIncrediblePortrait();
     Instructions instructions = new Instructions();
+    
+    static String p1CharacterName;//will be used to determine which character p1 will be
+    static String p2CharacterName;//will be used to determine which character p2 will be
     public SelectCharacter()
     {    
+        //setBackground(selectCharBackground);
         super(625, 450, 1);
         enterCounter = 100;
-        cursorSound = new GreenfootSound("cursor.wav");
-        addObject(cursor, 100, 100);
-        addObject(cursor2, 200, 100);
+        
         addObject(sonicPortrait,100,75);
         addObject(tailsPortrait,300,75);
         addObject(knucklesPortrait,500,75);
@@ -38,6 +41,8 @@ public class SelectCharacter extends World
         addObject(gokuPortrait,100,375);
         addObject(mrIncrediblePortrait,300,375);
         addObject(instructions,506,233);
+        addObject(cursor, 100, 100);
+        addObject(cursor2, 200, 100);
         clicked = false;        
     }
     public void act()
@@ -52,11 +57,10 @@ public class SelectCharacter extends World
         if (enterCounter == 0 && Greenfoot.isKeyDown("enter"))
         {
             Greenfoot.playSound("enter.wav");
-            world1 = new World1(); 
-            Greenfoot.setWorld(world1);
+            Greenfoot.setWorld(selectWorld); 
             p1CursorCharacter();
             p2CursorCharacter();
-            bgmusic.stop();
+            //bgmusic.stop();
         }
     }
     public GreenfootSound getbgmusic()
@@ -134,82 +138,86 @@ public class SelectCharacter extends World
     {
         if(cursor.getP1Cursor() == sonicPortrait)
         {
-             world1.addObject(new Sonic(),100,200);
+             p1CharacterName = "Sonic";
         }
         else if(cursor.getP1Cursor() == tailsPortrait)
         {
-             world1.addObject(new Tails(),100,200);
+             p1CharacterName = "Tails";
         }
         else if(cursor.getP1Cursor() == knucklesPortrait)
         {
-             world1.addObject(new Knuckles(),100,200);
+             p1CharacterName = "Knuckles";
         }
         else if(cursor.getP1Cursor() == linkPortrait)
         {
-             world1.addObject(new Link(),100,200);
+             p1CharacterName = "Link";
         }
         else if(cursor.getP1Cursor() == pikachuPortrait)
         {
-             world1.addObject(new Pikachu(),100,200);
+             p1CharacterName = "Pikachu";
         }
         else if(cursor.getP1Cursor() == megamanPortrait)
         {
-             world1.addObject(new Megaman(),100,200);
+             p1CharacterName = "Megaman";
         }
         else if(cursor.getP1Cursor() == marioPortrait)
         {
-             world1.addObject(new Mario(),100,200);
+             p1CharacterName = "Mario";
         }
         else if(cursor.getP1Cursor() == null)
-        {
-             world1.addObject(new Sonic(),100,200);
+        {//make this random later!
+             p1CharacterName = "Sonic";
         }
         else if(cursor.getP1Cursor() == gokuPortrait)
         {
-             world1.addObject(new Goku(),100,200);
+             p1CharacterName = "Goku";
         }
         else if(cursor.getP1Cursor() == mrIncrediblePortrait)
         {
-             world1.addObject(new MrIncredible(),100,200);
+             p1CharacterName = "MrIncredible";
         }
     }
         public void p2CursorCharacter() // detects which character portrait cursor1 is on to generate character in world1
     {
         if(cursor2.getP2Cursor() == sonicPortrait)
         {
-             world1.addObject(new Sonic2(),460,200);
+             p2CharacterName = "Sonic";
         }
         else if(cursor2.getP2Cursor() == tailsPortrait)
         {
-             world1.addObject(new Tails2(),460,200);
+             p2CharacterName = "Tails";
         }
         else if(cursor2.getP2Cursor() == knucklesPortrait)
         {
-             world1.addObject(new Knuckles2(),460,200);
+             p2CharacterName = "Knuckles";
         }
         else if(cursor2.getP2Cursor() == linkPortrait)
         {
-             world1.addObject(new Link2(),460,200);
+             p2CharacterName = "Link";
         }
         else if(cursor2.getP2Cursor() == pikachuPortrait)
         {
-             world1.addObject(new Pikachu2(),460,200);
+             p2CharacterName = "Pikachu";
         }
         else if(cursor2.getP2Cursor() == megamanPortrait)
         {
-             world1.addObject(new Megaman2(),460,200);
+             p2CharacterName = "Megaman";
         }
         else if(cursor2.getP2Cursor() == marioPortrait)
         {
-             world1.addObject(new Mario2(),460,200);
+             p2CharacterName = "Mario";
         }
         else if(cursor2.getP2Cursor() == gokuPortrait)
         {
-             world1.addObject(new Goku2(),460,200);
+             p2CharacterName = "Goku";
+        }
+        else if(cursor2.getP2Cursor() == mrIncrediblePortrait)
+        {
+            p2CharacterName = "MrIncredible";
         }
         else if(cursor2.getP2Cursor() == null)
-        {
-             world1.addObject(new Sonic2(),460,200);
+        {//MAKE THIS RANDOM LATER
+             p2CharacterName = "Sonic";
         }
     }
 }

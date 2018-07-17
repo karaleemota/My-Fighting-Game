@@ -8,15 +8,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class LinkPortrait extends CharacterPortrait
 {
-    public LinkPortrait()
-    {
-    }    
-    /**
-     * Act - do whatever the LinkPortrait wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    static GreenfootImage linkPortraitImage = new GreenfootImage("linkPortrait.PNG");
     public void act() 
     {
         // Add your action code here.
     }    
+    public LinkPortrait()
+    {
+        setImage(linkPortraitImage);
+    }  
 }

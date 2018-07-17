@@ -98,7 +98,7 @@ public class Goku2 extends Fighter2
                 else if(!isFacedRight())
                 {
                     moveCounter1++;
-                    if(moveCounter1 == 6 )
+                    if(moveCounter1 == 6 ) 
                     {
                         if ((getImage()  != leftJump1 && getImage() !=leftJump2 && getImage() != leftJump3) || isOnGround())
                         {

@@ -8,15 +8,13 @@ import greenfoot.*;
  */
 public class P1 extends Actor
 {
-    /**
-     * Act - do whatever the P1 wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    static GreenfootImage p1LabelImage = new GreenfootImage("Player1.png");
     public void act() 
     {
         // Add your action code here.
     }    
     public P1()
     {
+        setImage(p1LabelImage);
     }
 }

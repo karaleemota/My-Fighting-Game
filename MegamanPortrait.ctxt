@@ -2,8 +2,7 @@
 comment0.target=MegamanPortrait
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ MegamanPortrait\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=
-comment1.target=MegamanPortrait()
+comment1.target=void\ act()
 comment2.params=
-comment2.target=void\ act()
-comment2.text=\r\n\ Act\ -\ do\ whatever\ the\ MegamanPortrait\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+comment2.target=MegamanPortrait()
 numComments=3

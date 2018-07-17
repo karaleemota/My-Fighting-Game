@@ -36,7 +36,7 @@ public class Bullet2 extends Actor
         bulletHit3 = new GreenfootImage("bulletHit3.png");
         speed = inspeed;
         removed = false;
-        if(speed > 0 )
+        if(speed >= 0 )
         {
             setImage(bulletRight);
         }

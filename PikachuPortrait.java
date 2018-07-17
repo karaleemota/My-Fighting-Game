@@ -8,15 +8,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PikachuPortrait extends CharacterPortrait
 {
-    public PikachuPortrait()
-    {
-    }
-    /**
-     * Act - do whatever the PikachuPortrait wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    static GreenfootImage pikachuPortraitImage = new GreenfootImage("pikachuPortrait.png");
     public void act() 
     {
         // Add your action code here.
     }    
+    public PikachuPortrait()
+    {
+        setImage(pikachuPortraitImage);
+    }  
 }

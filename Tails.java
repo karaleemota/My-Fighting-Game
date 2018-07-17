@@ -34,6 +34,7 @@ public class Tails extends Fighter
         fallOffEdge();
         Player2Wins();//tells when player 1 has no hp left
     }    
+
     public Tails()
     {
         rightStand1 = new GreenfootImage("tailsRightStand1.gif");
@@ -66,106 +67,122 @@ public class Tails extends Fighter
         leftFly4 = new GreenfootImage("tailsLeftFly4.gif");
         punchSound = new GreenfootSound("tailsPunch.wav");
         setImage(rightStand1);
-        
+
         specialAttackTrue = false;//tells when s.a key has been pressed from fighter class
         moveSpeed = 5;
         p1 = new P1();
         healthBar = (new Bar("Tails","HP",100,100));
     }
+
     protected void addedToWorld(World world)
     {
         world.addObject(healthBar, 125, 30);
         world.addObject(p1,getX()+7,getY()-getImage().getHeight()/2-15);
     }
+
     public void jump(int height)
     {
-          if(Greenfoot.isKeyDown("w") && !Greenfoot.isKeyDown("p") && isFacedRight())
-          {
-              flyCounter2++;
-              vSpeed = 0;
-              if(flyCounter2 == 1)
-              {
-                   setLocation(getX(),getY()-height);
-                   flyCounter2 = 0;
-              }
-              flyCounter++;
-              if(flyCounter == 7)
+
+        if(Greenfoot.isKeyDown("w") && !Greenfoot.isKeyDown("p") && isFacedRight())
+        {
+            flyCounter2++;
+            vSpeed = 0;
+            if(flyCounter2 == 1)
+            {
+                setLocation(getX(),getY()-height);
+                flyCounter2 = 0;
+            }
+            flyCounter++;
+            if(flyCounter == 7)
+            {
+
+                if (getImage() == rightStand1 || getImage() == rightStand2 || getImage() == rightStand3
+                || getImage() == moveRight1 || getImage()==moveRight2 || getImage()==moveRight3
+                || getImage() == rightPunch1 || getImage() == rightPunch2 || getImage() == rightPunch3
+                || getImage() == rightPunch4)
                 {
-                   
-                   if (getImage() == rightStand1 || getImage() == rightStand2 || getImage() == rightStand3
-                         || getImage() == moveRight1 || getImage()==moveRight2 || getImage()==moveRight3
-                         || getImage() == rightPunch1 || getImage() == rightPunch2 || getImage() == rightPunch3
-                         || getImage() == rightPunch4)
-                    {
-                        setImage(rightFly1);
-                    }
-                    else if (getImage() == rightFly1 )
-                    {
-                        setImage(rightFly2);
-                    }
-                    else if(getImage() == rightFly2 )
-                    {
-                        setImage(rightFly3);
-                    }
-                    else if(getImage() == rightFly3 )
-                    {
-                        setImage(rightFly4);
-                    }
-                    else if ( getImage() != rightFly1 )
-                    {
-                        setImage(rightFly1);
-                    }
-                    flyCounter = 0;
+                    setImage(rightFly1);
                 }
-          }
-          else if(Greenfoot.isKeyDown("w") && !Greenfoot.isKeyDown("p") && !isFacedRight())
-          {
-              flyCounter2++;
-              vSpeed = 0;
-              if(flyCounter2 == 1)
-              {
-                   setLocation(getX(),getY()-height);
-                   flyCounter2 = 0;
-                }
-              flyCounter++;
-              if(flyCounter == 7)
+                else if (getImage() == rightFly1 )
                 {
-                   
-                   if (getImage() == leftStand1 || getImage() == leftStand2 || getImage() == leftStand3
-                         || getImage() == moveLeft1 || getImage()==moveLeft2 || getImage()==moveLeft3
-                         || getImage() == leftPunch1 || getImage() == leftPunch2 || getImage() == leftPunch3
-                         || getImage() == leftPunch4)
-                    {
-                        setImage(leftFly1);
-                    }
-                    else if (getImage() == leftFly1 )
-                    {
-                        setImage(leftFly2);
-                    }
-                    else if(getImage() == leftFly2 )
-                    {
-                        setImage(leftFly3);
-                    }
-                    else if(getImage() == leftFly3 )
-                    {
-                        setImage(leftFly4);
-                    }
-                    else if ( getImage() != leftFly1 )
-                    {
-                        setImage(leftFly1);
-                    }
-                    flyCounter = 0;
+                    setImage(rightFly2);
                 }
-                
+                else if(getImage() == rightFly2 )
+                {
+                    setImage(rightFly3);
+                }
+                else if(getImage() == rightFly3 )
+                {
+                    setImage(rightFly4);
+                }
+                else if ( getImage() != rightFly1 )
+                {
+                    setImage(rightFly1);
+                }
+                flyCounter = 0;
+            }
+        }
+        else if(Greenfoot.isKeyDown("w") && !Greenfoot.isKeyDown("p") && !isFacedRight())
+        {
+            flyCounter2++;
+            vSpeed = 0;
+            if(flyCounter2 == 1)
+            {
+                setLocation(getX(),getY()-height);
+                flyCounter2 = 0;
+            }
+            flyCounter++;
+            if(flyCounter == 7)
+            {
+
+                if (getImage() == leftStand1 || getImage() == leftStand2 || getImage() == leftStand3
+                || getImage() == moveLeft1 || getImage()==moveLeft2 || getImage()==moveLeft3
+                || getImage() == leftPunch1 || getImage() == leftPunch2 || getImage() == leftPunch3
+                || getImage() == leftPunch4)
+                {
+                    setImage(leftFly1);
+                }
+                else if (getImage() == leftFly1 )
+                {
+                    setImage(leftFly2);
+                }
+                else if(getImage() == leftFly2 )
+                {
+                    setImage(leftFly3);
+                }
+                else if(getImage() == leftFly3 )
+                {
+                    setImage(leftFly4);
+                }
+                else if ( getImage() != leftFly1 )
+                {
+                    setImage(leftFly1);
+                }
+                flyCounter = 0;
+            }
+
         }
         else
+        {
+            applyGravity();
+            if(!isOnGround() && !specialAttackTrue && !lightAttackTrue && !Greenfoot.isKeyDown("w"))//animate falling off ledge
+            {
+                if(isFacedRight())
                 {
-                    applyGravity();
+                    setImage(rightFly2);
                 }
+                else
+                {
+                    setImage(leftFly2);
+                }
+            }
+        }
     }
+
     public void specialAttack()
     {//will be implemented in the future..
     }
+
     public void labelFollow()
     {
         if(facedRight == true)

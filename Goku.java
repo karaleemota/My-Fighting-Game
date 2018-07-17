@@ -85,8 +85,9 @@ public class Goku extends Fighter
         healthBar = (new Bar("Goku","HP",100,100));
     }
 
-    public void jump(int height)
+    public void jump(int height) 
     {  
+        
         if(Greenfoot.isKeyDown("w") && !lightAttackTrue)
         {
             if(isFacedRight())
@@ -138,6 +139,17 @@ public class Goku extends Fighter
                 }
             }
             setLocation(getX(),getY()-height);
+        }
+        else if(!isOnGround() && !specialAttackTrue && !lightAttackTrue)//animate falling off ledge
+        {
+            if(isFacedRight())
+            {
+                setImage(rightJump3);
+            }
+            else
+            {
+                setImage(leftJump3);
+            }
         }
     }
 

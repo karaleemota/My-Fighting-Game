@@ -3,8 +3,10 @@ import greenfoot.*;
 public class Cursor extends Actor
 {
     private int counter;
+    static GreenfootImage cursorImage = new GreenfootImage("p1circle.PNG");
     public Cursor()
     {
+        setImage(cursorImage);
         counter = 0;
     }
     public void act() 
