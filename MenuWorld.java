@@ -16,6 +16,6 @@ abstract public class MenuWorld extends World
     public MenuWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(625, 450, 1); 
+        super(684, 513, 1);
     }
 }

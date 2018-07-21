@@ -59,7 +59,7 @@ public class ThunderBolt extends Actor
         electric1Sound.setVolume(90);//vol of sound effect
     }
 
-    protected boolean isOnGround()//checks if character is touching the ground
+    protected boolean isOnGround()//checks if bolt is touching the ground
     {
         if(getOneObjectAtOffset(0,(getImage().getHeight()/2)+3,Platform.class)!=null)
         {
@@ -78,6 +78,7 @@ public class ThunderBolt extends Actor
             groundHeight = getImage().getHeight()/2;//How far it is from the middle of the actor to the bottom 
             if(!isOnGround())
             { 
+                gSpeed = 3;
                 setLocation (getX(), getY() + gSpeed);
             }
             else
@@ -92,17 +93,17 @@ public class ThunderBolt extends Actor
         }
     }
 
-    public void removeMe()//remove bomb from world
+    public void removeMe()//remove bolt from world
     {
         removed = true;
         getWorld().removeObject(this);
     }
 
-    public void checkBorder()//removes bomb if it hits end of world
+    public void checkBorder()//removes bolt if it hits end of world
     {
         if(removed == false)
         {
-            if (getX() == 599)
+            if (getX() == 683)
             {
                 removeMe();
                 removed = true;
@@ -112,7 +113,7 @@ public class ThunderBolt extends Actor
                 removeMe();
                 removed = true;
             }
-            else if(getY() == 449)
+            else if(getY() == 511)
             {
                 removeMe();
                 removed = true;

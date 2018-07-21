@@ -136,7 +136,7 @@ public class Bomb extends Actor
     {
        if(removed == false)
        {
-           if (getX() == 599)
+           if (getX() == 683)
            {
                removeMe();
                removed = true;
@@ -146,7 +146,7 @@ public class Bomb extends Actor
                 removeMe();
                 removed = true;
             }
-            else if(getY() == 449)
+            else if(getY() == 511)
             {
                 removeMe();
                 removed = true;

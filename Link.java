@@ -71,6 +71,7 @@ public class Link extends Fighter
         labelFollow();
         fallOffEdge();
         Player2Wins();
+        checkForObjects();
     }    
 
     public Link()

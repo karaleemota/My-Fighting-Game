@@ -12,6 +12,7 @@ public class SelectWorld extends World
     
     static WorldPortrait world1Portrait = new World1Portrait();//world1
     static WorldPortrait world2Portrait = new World2Portrait();//dragon ball fighting arena  
+    static WorldPortrait world3Portrait = new World3Portrait(); //sonic sunset hill
     static SelectWorldCursor cursor = new SelectWorldCursor();
     FightWorld fightWorld;//holds world to be fought in
     
@@ -23,13 +24,14 @@ public class SelectWorld extends World
     String worldSelectedName;//used to hold name of world selected
     public SelectWorld()
     {    
-        super(625, 450, 1); 
+        super(684, 513, 1);
         setBackground(SelectCharacter.selectCharBackground);
         enterCounter = 100;
         clicked = false;  
         
-        addObject(world1Portrait,100,75);
-        addObject(world2Portrait,300,75);
+        addObject(world1Portrait,135,85);
+        addObject(world2Portrait,338,85);
+        addObject(world3Portrait,540,85);
         addObject(cursor,90,75);
     }
     public void act()
@@ -41,8 +43,8 @@ public class SelectWorld extends World
         {
            Greenfoot.playSound("enter.wav");
            toFightWorld();//code to set characters and world;
-           Greenfoot.setWorld(fightWorld); //go to world to fight!
            SelectCharacter.bgmusic.stop();
+           Greenfoot.setWorld(fightWorld); //go to world to fight!
         }
     }
     public void enterCountDown()
@@ -122,6 +124,10 @@ public class SelectWorld extends World
         {
             worldSelectedName = "world2";
         }
+        else if(cursor.getWorldCursor() == world3Portrait)
+        {
+            worldSelectedName = "world3";
+        }
         else//null
         {
             worldSelectedName = "world1";
@@ -137,6 +143,10 @@ public class SelectWorld extends World
         else if(worldSelectedName == "world2")
         {
             fightWorld = new World2();
+        }
+        else if(worldSelectedName == "world3")
+        {
+            fightWorld = new World3();
         }
         else//in case any errors
         {

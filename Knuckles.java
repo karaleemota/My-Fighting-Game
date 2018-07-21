@@ -27,6 +27,7 @@ public class Knuckles extends Fighter
         labelFollow();
         fallOffEdge();
         Player2Wins();
+        checkForObjects();
     }    
 
     public Knuckles()

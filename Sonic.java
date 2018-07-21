@@ -32,6 +32,7 @@ public class Sonic extends Fighter
         labelFollow();
         fallOffEdge();
         Player2Wins();
+        checkForObjects();
     }    
 
     public Sonic()
@@ -73,8 +74,8 @@ public class Sonic extends Fighter
 
     public void jump(int height)
     {
-        
-        if(Greenfoot.isKeyDown("w") )
+
+        if(Greenfoot.isKeyDown("w") && vSpeed > -1)
         {
             if(isFacedRight())
             {
@@ -114,7 +115,7 @@ public class Sonic extends Fighter
                         setImage(leftJump2);
                     }
                     else if(getImage() == leftJump2 )
-                    {
+                    { 
                         setImage(leftJump3);
                     }
                     else if ( getImage() != leftJump3 )

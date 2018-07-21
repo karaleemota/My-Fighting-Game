@@ -40,6 +40,7 @@ public class Pikachu extends Fighter
         labelFollow();
         fallOffEdge();
         Player2Wins();
+        checkForObjects();
     }    
 
     public Pikachu()

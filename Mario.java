@@ -27,6 +27,7 @@ public class Mario extends Fighter
         labelFollow();
         fallOffEdge();
         Player2Wins();
+        checkForObjects();
     }    
     public Mario()
     {

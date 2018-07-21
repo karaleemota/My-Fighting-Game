@@ -9,13 +9,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class World2 extends FightWorld
 {
     //dragon ball fighting arena
-    public static GreenfootSound world2Music = new GreenfootSound("dragonBallBGMusic.mp3");
+    public static GreenfootSound world2Music = new GreenfootSound("dragonBallBGMusic.wav");
+    public static GreenfootImage world2BG = new GreenfootImage("tournamentArena.png");
     public World2()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 450, 1);
+        super(684, 513, 1);
         bgmusic = world2Music;
-        addObject(new TourneyArenaPlatformTop(), 311, 415);
+        addObject(new TourneyArenaPlatformTop(), 354, 469);
         startMusic();
     }
 }

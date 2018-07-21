@@ -64,7 +64,7 @@ public class Blast extends Actor
     {
         if(removed == false)
         {
-            if (getX() == 599)
+            if (getX() == 683)
             {
                 removeMe();
                 removed = true;

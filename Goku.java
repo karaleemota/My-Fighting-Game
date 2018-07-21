@@ -45,6 +45,7 @@ public class Goku extends Fighter
         labelFollow();
         fallOffEdge();
         Player2Wins();
+        checkForObjects();
     }    
 
     public Goku()

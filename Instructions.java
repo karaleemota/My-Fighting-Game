@@ -8,7 +8,7 @@ public class Instructions extends Actor
 {
     public static final float FONT_SIZE = 16.0f;
     public static final int WIDTH = 200;
-    public static final int HEIGHT = 140;
+    public static final int HEIGHT = 140; 
     
     /**
      * Create a score board with dummy result for testing.

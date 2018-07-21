@@ -8,11 +8,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class IntroScreen extends World
 {
-    static GreenfootImage introScreenImage = new GreenfootImage("2.jpg");
+    static GreenfootImage introScreenImage = new GreenfootImage("introScreen.png");
     public IntroScreen()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(625, 450, 1); 
+        super(684, 513, 1);
         setBackground(introScreenImage);
     }
     
@@ -20,10 +20,10 @@ public class IntroScreen extends World
     {
       
         //start the game when user presses space bar
-        if (Greenfoot.isKeyDown("space"))
+        if (Greenfoot.isKeyDown("enter"))
         {
             Greenfoot.playSound("enter.wav");
-            Greenfoot.setWorld(new SelectCharacter());
+            Greenfoot.setWorld(new SelectCharacter()); 
         }
     }
 }

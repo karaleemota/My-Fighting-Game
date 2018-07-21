@@ -5,7 +5,7 @@ public class SelectCharacter extends World
     private int enterCounter;
     private boolean isGrabbed = false;
     static public GreenfootSound cursorSound = new GreenfootSound("cursor.wav");//sound when cursor is grabbed
-    static public GreenfootSound bgmusic = new GreenfootSound("meleeMenu1.mp3");
+    static public GreenfootSound bgmusic = new GreenfootSound("meleeMenu1.wav");
     static GreenfootImage selectCharBackground = new GreenfootImage("Super_Smash_Bros_Lawl_Poster_Background.png");
     private boolean clicked; 
     private MouseInfo mouse;
@@ -28,19 +28,19 @@ public class SelectCharacter extends World
     public SelectCharacter()
     {    
         //setBackground(selectCharBackground);
-        super(625, 450, 1);
+        super(684, 513, 1);
         enterCounter = 100;
         
-        addObject(sonicPortrait,100,75);
-        addObject(tailsPortrait,300,75);
-        addObject(knucklesPortrait,500,75);
-        addObject(linkPortrait,500,375);
-        addObject(pikachuPortrait,100,227);
-        addObject(megamanPortrait,300,227);
+        addObject(sonicPortrait,135,85);
+        addObject(tailsPortrait,338,85);
+        addObject(knucklesPortrait,540,85);
+        addObject(linkPortrait,540,385);
+        addObject(pikachuPortrait,135,237);
+        addObject(megamanPortrait,338,237);
         //addObject(marioPortrait,547,233);
-        addObject(gokuPortrait,100,375);
-        addObject(mrIncrediblePortrait,300,375);
-        addObject(instructions,506,233);
+        addObject(gokuPortrait,135,385);
+        addObject(mrIncrediblePortrait,338,385);
+        addObject(instructions,526,243);
         addObject(cursor, 100, 100);
         addObject(cursor2, 200, 100);
         clicked = false;        

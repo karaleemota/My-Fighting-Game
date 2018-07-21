@@ -33,6 +33,7 @@ public class Tails extends Fighter
         labelFollow();//p1 label follows character
         fallOffEdge();
         Player2Wins();//tells when player 1 has no hp left
+        checkForObjects();
     }    
 
     public Tails()

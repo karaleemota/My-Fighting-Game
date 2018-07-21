@@ -10,7 +10,7 @@ public abstract class Fighter extends Actor
 {
     public void act() 
     {
-        
+
     }  
     protected int vSpeed = 1;
     static protected P1 p1; //p1 label over players head
@@ -51,25 +51,29 @@ public abstract class Fighter extends Actor
     int groundHeight = getImage().getHeight()/2;//How far it is from the middle of the actor to the bottom  
     public Fighter()
     {
-        
+
     }
+
     public Fighter(int health)
     {
-        
+
     }
+
     protected void jump(int height)
     {
-          if(Greenfoot.isKeyDown("w"))
-          {
-              setLocation(getX(),getY()-height);
-          }
+        if(Greenfoot.isKeyDown("w")) 
+        {
+            setLocation(10,10);
+            vSpeed = -1*height;//negative gravity speed will make fighter go up
+        }
     }
+
     protected void moveRight(int speed)
     {
         if(Greenfoot.isKeyDown("d") && !Greenfoot.isKeyDown("p") && !lightAttackTrue && !specialAttackTrue)
         {
-           setLocation(getX()+speed,getY());
-           if(isOnGround() && isFacedRight())
+            setLocation(getX()+speed,getY());
+            if(isOnGround() && isFacedRight())
             {
                 moveCounter1++;
                 if(moveCounter1 == speed)
@@ -95,6 +99,7 @@ public abstract class Fighter extends Actor
             }
         }
     }
+
     protected void moveLeft(int speed)
     {
         if(Greenfoot.isKeyDown("a") && !Greenfoot.isKeyDown("p") && !lightAttackTrue && !specialAttackTrue)
@@ -126,6 +131,7 @@ public abstract class Fighter extends Actor
             }
         }
     }
+
     protected  void lightAttack(int speed, int damage)
     {
         if(Greenfoot.isKeyDown("p"))
@@ -188,10 +194,10 @@ public abstract class Fighter extends Actor
                 lightAttackTrue =false;
             }         
         }
-        }
-    
+    }
+
     public abstract void specialAttack();
-    
+
     protected boolean isOnGround()//checks if character is touching the ground
     {
         if(getOneObjectAtOffset(0,(getImage().getHeight()/2)+3,Platform.class)!=null)
@@ -217,20 +223,21 @@ public abstract class Fighter extends Actor
         }
         else
         {
-           Actor platformBelow = getOneObjectAtOffset(0,((getImage().getHeight()/2)+3),Platform.class);
+            Actor platformBelow = getOneObjectAtOffset(0,((getImage().getHeight()/2)+3),Platform.class);
             GreenfootImage platformImage = platformBelow.getImage();    //Get the platform's image
             int topOfPlatform = platformBelow.getY()-platformImage.getHeight()/2+5;
             int newY = topOfPlatform - groundHeight; 
             setLocation (getX(), newY);
             vSpeed = 0;
+
         }
     }
-    
+
     protected void block()
     {
-        
+
     }
-    
+
     public boolean isFacedRight()
     {
         if(Greenfoot.isKeyDown("d"))
@@ -243,14 +250,14 @@ public abstract class Fighter extends Actor
         }
         return facedRight;
     }
-    
+
     protected void animate()
     {
         x = x+1;
         if (x == 8)
         {
             if(isOnGround() && isFacedRight() && !Greenfoot.isKeyDown("d") && !Greenfoot.isKeyDown("p")
-               && !Greenfoot.isKeyDown("a") && !lightAttackTrue && !specialAttackTrue)
+            && !Greenfoot.isKeyDown("a") && !lightAttackTrue && !specialAttackTrue)
             {
                 if (getImage() == rightStand1 )
                 {
@@ -265,9 +272,9 @@ public abstract class Fighter extends Actor
                     setImage(rightStand1);
                 }
             }
-            
+
             else if(isOnGround() && !isFacedRight() && !Greenfoot.isKeyDown("a") && !Greenfoot.isKeyDown("p")
-                    && !Greenfoot.isKeyDown("d") && !lightAttackTrue && !specialAttackTrue)
+            && !Greenfoot.isKeyDown("d") && !lightAttackTrue && !specialAttackTrue)
             {
                 if (getImage() == leftStand1 )
                 {
@@ -285,13 +292,15 @@ public abstract class Fighter extends Actor
             x = 0;
         }
     }
+
     protected void fallOffEdge()
     {
-        if(getY() > 447 )
+        if(getY() > 510 )
         {
             healthBar.setValue(0);
         }
     }
+
     public void Player2Wins()
     {
         FightWorld w = (FightWorld)getWorld();
@@ -302,7 +311,6 @@ public abstract class Fighter extends Actor
                 w.addObject(new Player2Wins(),300,250);
                 addedObject = true;
             }
-            
             if(Greenfoot.isKeyDown("enter"))
             {
                 Greenfoot.playSound("enter.wav");
@@ -311,5 +319,21 @@ public abstract class Fighter extends Actor
             }
         }
     }
+
+    public void checkForSpring()
+    {
+        Spring spring = getOneObjectAtOffset(0,((getImage().getHeight()/2)+3),Spring.class);
+        if(spring != null)//there is spring below fighter's feet
+        {
+            spring.sprung = true;//make spring do spring action
+            vSpeed = -23;//reverse gravity to push player up
+        }
+    }
+
+    public void checkForObjects()//checks for objects like springs,rings,ect..
+    {
+        checkForSpring();
+    }
+
     protected abstract void labelFollow();
 }
