@@ -12,26 +12,53 @@ public class Goku extends Fighter
     private char moveCounter1 = 0;
     private char moveCounter2 = 0;//time special attack animation
     //images
-    GreenfootImage rightJump1;
-    GreenfootImage rightJump2;
-    GreenfootImage rightJump3;
-    GreenfootImage leftJump1;
-    GreenfootImage leftJump2;
-    GreenfootImage leftJump3;
-    private static GreenfootImage rightBlast1 = new GreenfootImage("gokuRightBlast1.png");
-    private static GreenfootImage rightBlast2 = new GreenfootImage("gokuRightBlast2.png");
-    private static GreenfootImage rightBlast3 = new GreenfootImage("gokuRightBlast3.png");
-    private static GreenfootImage rightBlast4 = new GreenfootImage("gokuRightBlast4.png");
-    private static GreenfootImage leftBlast1 = new GreenfootImage("gokuLeftBlast1.png");
-    private static GreenfootImage leftBlast2 = new GreenfootImage("gokuLeftBlast2.png");
-    private static GreenfootImage leftBlast3 = new GreenfootImage("gokuLeftBlast3.png");
-    private static GreenfootImage leftBlast4 = new GreenfootImage("gokuLeftBlast4.png");
+    static GreenfootImage rightJump1 = new GreenfootImage("gokuRightJump1.png");
+    static GreenfootImage rightJump2 = new GreenfootImage("gokuRightJump2.png");
+    static GreenfootImage rightJump3 = new GreenfootImage("gokuRightJump3.png");
+    static GreenfootImage leftJump1 = new GreenfootImage("gokuLeftJump1.png");
+    static GreenfootImage leftJump2 = new GreenfootImage("gokuLeftJump2.png");
+    static GreenfootImage leftJump3 = new GreenfootImage("gokuLeftJump3.png");
+    static GreenfootImage gokuRightStand1 = new GreenfootImage("gokuRightStand1.png");
+    static GreenfootImage gokuRightStand2 = new GreenfootImage("gokuRightStand2.png");
+    static GreenfootImage gokuRightStand3 = new GreenfootImage("gokuRightStand3.png");
+    static GreenfootImage gokuLeftStand1 = new GreenfootImage("gokuLeftStand1.png");
+    static GreenfootImage gokuLeftStand2 = new GreenfootImage("gokuLeftStand2.png");
+    static GreenfootImage gokuLeftStand3 = new GreenfootImage("gokuLeftStand3.png");
+    static GreenfootImage gokuMoveRight1 = new GreenfootImage("gokuMoveRight1.png");
+    static GreenfootImage gokuMoveRight2 = new GreenfootImage("gokuMoveRight2.png");
+    static GreenfootImage gokuMoveRight3 = new GreenfootImage("gokuMoveRight3.png");
+    static GreenfootImage gokuMoveLeft1 = new GreenfootImage("gokuMoveLeft1.png");
+    static GreenfootImage gokuMoveLeft2 = new GreenfootImage("gokuMoveLeft2.png");
+    static GreenfootImage gokuMoveLeft3 = new GreenfootImage("gokuMoveLeft3.png");
+    static GreenfootImage gokuRightPunch1 = new GreenfootImage("gokuRightPunch1.png");
+    static GreenfootImage gokuRightPunch2 = new GreenfootImage("gokuRightPunch2.png");
+    static GreenfootImage gokuRightPunch3 = new GreenfootImage("gokuRightPunch3.png");
+    static GreenfootImage gokuRightPunch4 = new GreenfootImage("gokuRightPunch4.png");
+    static GreenfootImage gokuLeftPunch1 = new GreenfootImage("gokuLeftPunch1.png");
+    static GreenfootImage gokuLeftPunch2 = new GreenfootImage("gokuLeftPunch2.png");
+    static GreenfootImage gokuLeftPunch3 = new GreenfootImage("gokuLeftPunch3.png");
+    static GreenfootImage gokuLeftPunch4 = new GreenfootImage("gokuLeftPunch4.png");
+    static GreenfootImage gokuRightJump1 = new GreenfootImage("gokuRightJump1.png");
+    static GreenfootImage gokuRightJump2 = new GreenfootImage("gokuRightJump2.png");
+    static GreenfootImage gokuRightJump3 = new GreenfootImage("gokuRightJump3.png");
+    static GreenfootImage gokuLeftJump1 = new GreenfootImage("gokuLeftJump1.png");
+    static GreenfootImage gokuLeftJump2 = new GreenfootImage("gokuLeftJump2.png");
+    static GreenfootImage gokuLeftJump3 = new GreenfootImage("gokuLeftJump3.png");
+    static GreenfootImage rightBlast1 = new GreenfootImage("gokuRightBlast1.png");
+    static GreenfootImage rightBlast2 = new GreenfootImage("gokuRightBlast2.png");
+    static GreenfootImage rightBlast3 = new GreenfootImage("gokuRightBlast3.png");
+    static GreenfootImage rightBlast4 = new GreenfootImage("gokuRightBlast4.png");
+    static GreenfootImage leftBlast1 = new GreenfootImage("gokuLeftBlast1.png");
+    static GreenfootImage leftBlast2 = new GreenfootImage("gokuLeftBlast2.png");
+    static GreenfootImage leftBlast3 = new GreenfootImage("gokuLeftBlast3.png");
+    static GreenfootImage leftBlast4 = new GreenfootImage("gokuLeftBlast4.png");
     //sounds
-    private static GreenfootSound gokuBlastSound = new GreenfootSound("gokuBlast.wav");
-    
+    static GreenfootSound gokuPunchSound = new GreenfootSound("gokuPunch.wav");
+    static GreenfootSound gokuBlastSound = new GreenfootSound("gokuBlast.wav");
+
     private char blastTimer;//limits amount of special attacks goku can do at a time
-    private int speed = 5;//speed defines how fast goku will animate
-    
+    private int speed = 5;//speed defines how fast goku will animate when attacking
+
     public void act() 
     {
         groundHeight = getImage().getHeight()/2;//update image to use for gravity in fighter class
@@ -50,46 +77,44 @@ public class Goku extends Fighter
 
     public Goku()
     {
-        rightStand1 = new GreenfootImage("gokuRightStand1.png");
-        rightStand2 = new GreenfootImage("gokuRightStand2.png");
-        rightStand3 = new GreenfootImage("gokuRightStand3.png");
-        leftStand1 = new GreenfootImage("gokuLeftStand1.png");
-        leftStand2 = new GreenfootImage("gokuLeftStand2.png");
-        leftStand3 = new GreenfootImage("gokuLeftStand3.png");
-        moveRight1 = new GreenfootImage("gokuMoveRight1.png");
-        moveRight2 = new GreenfootImage("gokuMoveRight2.png");
-        moveRight3 = new GreenfootImage("gokuMoveRight3.png");
-        moveLeft1 = new GreenfootImage("gokuMoveLeft1.png");
-        moveLeft2 = new GreenfootImage("gokuMoveLeft2.png");
-        moveLeft3 = new GreenfootImage("gokuMoveLeft3.png");
-        rightPunch1 = new GreenfootImage("gokuRightPunch1.png");
-        rightPunch2 = new GreenfootImage("gokuRightPunch2.png");
-        rightPunch3 = new GreenfootImage("gokuRightPunch3.png");
-        rightPunch4 = new GreenfootImage("gokuRightPunch4.png");
-        leftPunch1 = new GreenfootImage("gokuLeftPunch1.png");
-        leftPunch2 = new GreenfootImage("gokuLeftPunch2.png");
-        leftPunch3 = new GreenfootImage("gokuLeftPunch3.png");
-        leftPunch4 = new GreenfootImage("gokuLeftPunch4.png");
-        rightJump1 = new GreenfootImage("gokuRightJump1.png");
-        rightJump2 = new GreenfootImage("gokuRightJump2.png");
-        rightJump3 = new GreenfootImage("gokuRightJump3.png");
-        leftJump1 = new GreenfootImage("gokuLeftJump1.png");
-        leftJump2 = new GreenfootImage("gokuLeftJump2.png");
-        leftJump3 = new GreenfootImage("gokuLeftJump3.png");
-        punchSound = new GreenfootSound("gokuPunch.wav");
+        rightStand1 = gokuRightStand1;
+        rightStand2 = gokuRightStand2;
+        rightStand3 = gokuRightStand3;
+        leftStand1 = gokuLeftStand1;
+        leftStand2 = gokuLeftStand2;
+        leftStand3 = gokuLeftStand3;
+        moveRight1 = gokuMoveRight1;
+        moveRight2 = gokuMoveRight2;
+        moveRight3 = gokuMoveRight3;
+        moveLeft1 = gokuMoveLeft1;
+        moveLeft2 = gokuMoveLeft2;
+        moveLeft3 = gokuMoveLeft3;
+        rightPunch1 = gokuRightPunch1;
+        rightPunch2 = gokuRightPunch2;
+        rightPunch3 = gokuRightPunch3;
+        rightPunch4 = gokuRightPunch4;
+        leftPunch1 = gokuLeftPunch1;
+        leftPunch2 = gokuLeftPunch2;
+        leftPunch3 = gokuLeftPunch3;
+        leftPunch4 = gokuLeftPunch4;
+        punchSound = gokuPunchSound;
         setImage(rightStand1);
         gokuBlastSound.setVolume(80);
-        
+
         moveSpeed = 6;
         specialAttackTrue = false;//tells when s.a key has been pressed from fighter class
+        lightAttackTrue = false;//tells when l.a. key has been pressed from fighter class
         p1 = new P1();
         healthBar = (new Bar("Goku","HP",100,100));
     }
 
     public void jump(int height) 
     {  
-        
-        if(Greenfoot.isKeyDown("w") && !lightAttackTrue)
+        if(isOnGround() && jumped) 
+        {
+            jumped = false;//must have touched ground from previous jump 
+        }
+        if(Greenfoot.isKeyDown("w") && vSpeed > -1 && !hitSpring)
         {
             if(isFacedRight())
             {
@@ -129,7 +154,7 @@ public class Goku extends Fighter
                         setImage(leftJump2);
                     }
                     else if(getImage() == leftJump2 )
-                    {
+                    { 
                         setImage(leftJump3);
                     }
                     else if ( getImage() != leftJump3 )
@@ -140,9 +165,21 @@ public class Goku extends Fighter
                 }
             }
             setLocation(getX(),getY()-height);
+            jumped = true;//is in air from jumping
         }
-        else if(!isOnGround() && !specialAttackTrue && !lightAttackTrue)//animate falling off ledge
-        {
+        else if(vSpeed < 0)
+        {//probably hit spring, so animate as if jumping up
+            if(isFacedRight())
+            {
+                setImage(rightJump1);
+            }
+            else
+            {
+                setImage(leftJump1);
+            }
+        }
+        else if(!isOnGround() && !specialAttackTrue && !lightAttackTrue && jumped == false)
+        {//animate falling off ledge
             if(isFacedRight())
             {
                 setImage(rightJump3);
@@ -168,7 +205,7 @@ public class Goku extends Fighter
     public void specialAttack()
     {
         blastTimer++;
-        if(Greenfoot.isKeyDown("o") && blastTimer >= 75)
+        if(Greenfoot.isKeyDown("o") && blastTimer >= 72)
         {         
             specialAttackTrue = true;
         }
@@ -223,6 +260,7 @@ public class Goku extends Fighter
             }         
         }
     }
+
     public void labelFollow()
     {
         p1.setLocation(this.getX(),this.getY()-getImage().getHeight()/2-15);

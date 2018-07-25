@@ -1,5 +1,4 @@
 import greenfoot.*;
-
 /**
  * Write a description of class megaman here.
  * 
@@ -8,219 +7,226 @@ import greenfoot.*;
  */
 public class Megaman2 extends Fighter2
 {
-    private int moveSpeed;
-    /**
-     * Act - do whatever the megaman wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    protected GreenfootImage rightShoot1;
-    protected GreenfootImage rightShoot2;
-    protected GreenfootImage rightShoot3;
-    protected GreenfootImage rightShoot4;
-    protected GreenfootImage leftShoot1;
-    protected GreenfootImage leftShoot2;
-    protected GreenfootImage leftShoot3;
-    protected GreenfootImage leftShoot4;
-    protected GreenfootImage rightJump1;
-    protected GreenfootImage rightJump2;
-    protected GreenfootImage rightJump3;
-    protected GreenfootImage leftJump1;
-    protected GreenfootImage leftJump2;
-    protected GreenfootImage leftJump3;
-    protected GreenfootSound megamanBuster;
+    GreenfootImage rightShoot1 = Megaman.rightShoot1;
+    GreenfootImage rightShoot2 = Megaman.rightShoot2;
+    GreenfootImage rightShoot3 = Megaman.rightShoot3;
+    GreenfootImage rightShoot4 = Megaman.rightShoot4;
+    GreenfootImage leftShoot1 = Megaman.leftShoot1;
+    GreenfootImage leftShoot2 = Megaman.leftShoot2;
+    GreenfootImage leftShoot3 = Megaman.leftShoot3;
+    GreenfootImage leftShoot4 = Megaman.leftShoot4;
+    GreenfootImage rightJump1 = Megaman.rightJump1;
+    GreenfootImage rightJump2 = Megaman.rightJump2;
+    GreenfootImage rightJump3 = Megaman.rightJump3;
+    GreenfootImage leftJump1 = Megaman.leftJump1;
+    GreenfootImage leftJump2 = Megaman.leftJump2;
+    GreenfootImage leftJump3 = Megaman.leftJump3; 
+    GreenfootSound megamanBuster = Megaman.megamanBuster;
     private int moveCounter1;
     private int moveCounter2;
-    private int moveCounter4; //slows down rate megaman can shoot
+    private char moveCounter4; //slows down rate megaman can shoot
     public void act() 
     {
+        groundHeight = getImage().getHeight()/2;//update image to use for gravity in fighter class
         applyGravity();
         animate();
         jump(12);
-        moveCounter4++;
         shoot(5,3);
         moveRight(moveSpeed);
         moveLeft(moveSpeed);
         labelFollow();
         fallOffEdge();
         Player1Wins();
+        checkForObjects();
     }    
+
     public Megaman2()
     {
-        rightStand1 = new GreenfootImage("megamanRightStand1.png");
-        rightStand2 = new GreenfootImage("megamanRightStand2.png");
-        rightStand3 = new GreenfootImage("megamanRightStand3.png");
-        leftStand1 = new GreenfootImage("megamanLeftStand1.png");
-        leftStand2 = new GreenfootImage("megamanLeftStand2.png");
-        leftStand3 = new GreenfootImage("megamanLeftStand3.png");
-        moveRight1 = new GreenfootImage("megamanMoveRight1.png");
-        moveRight2 = new GreenfootImage("megamanMoveRight2.png");
-        moveRight3 = new GreenfootImage("megamanMoveRight3.png");
-        moveLeft1 = new GreenfootImage("megamanMoveLeft1.png");
-        moveLeft2 = new GreenfootImage("megamanMoveLeft2.png");
-        moveLeft3 = new GreenfootImage("megamanMoveLeft3.png");
-        rightShoot1 = new GreenfootImage("megamanRightShoot1.png");
-        rightShoot2 = new GreenfootImage("megamanRightShoot2.png");
-        rightShoot3 = new GreenfootImage("megamanRightShoot3.png");
-        rightShoot4 = new GreenfootImage("megamanRightShoot4.png");
-        leftShoot1 = new GreenfootImage("megamanLeftShoot1.png");
-        leftShoot2 = new GreenfootImage("megamanLeftShoot2.png");
-        leftShoot3 = new GreenfootImage("megamanLeftShoot3.png");
-        leftShoot4 = new GreenfootImage("megamanLeftShoot4.png");
-        rightJump1 = new GreenfootImage("megamanRightJump1.png");
-        rightJump2 = new GreenfootImage("megamanRightJump2.png");
-        rightJump3 = new GreenfootImage("megamanRightJump3.png");
-        leftJump1 = new GreenfootImage("megamanLeftJump1.png");
-        leftJump2 = new GreenfootImage("megamanLeftJump2.png");
-        leftJump3 = new GreenfootImage("megamanLeftJump3.png");
-        megamanBuster = new GreenfootSound("megamanBuster.wav");
-        moveCounter2 = 0;
-        setImage(rightStand1);
+        rightStand1 = Megaman.megamanRightStand1;
+        rightStand2 = Megaman.megamanRightStand2;
+        rightStand3 = Megaman.megamanRightStand3;
+        leftStand1 = Megaman.megamanLeftStand1;
+        leftStand2 = Megaman.megamanLeftStand2;
+        leftStand3 = Megaman.megamanLeftStand3;
+        moveRight1 = Megaman.megamanMoveRight1;
+        moveRight2 = Megaman.megamanMoveRight2;
+        moveRight3 = Megaman.megamanMoveRight3;
+        moveLeft1 = Megaman.megamanMoveLeft1;
+        moveLeft2 = Megaman.megamanMoveLeft2;
+        moveLeft3 = Megaman.megamanMoveLeft3;
+        setImage(leftStand1);
+
         moveSpeed = 5;
         moveCounter1 = 0;
+        moveCounter2 = 0;
+        moveCounter4 = 0;
+        specialAttackTrue = false;//tells when s.a key has been pressed from fighter class
+        lightAttackTrue = false;//tells when l.a. key has been pressed from fighter class
         p2 = new P2();
         healthBar = (new Bar("Megaman","HP",100,100));
     }
+
     protected void addedToWorld(World world)
     {
-        world.addObject(healthBar, 500, 30);
+        world.addObject(healthBar, 550, 30);
         world.addObject(p2,getX(),getY()-getImage().getHeight()/2-15);
     }
-        public void jump(int height)
+
+    public void jump(int height)
     {
-          
-          if(Greenfoot.isKeyDown("up") )
-          {
-              if(isFacedRight())
-                {
-                    moveCounter1++;
-                    if(moveCounter1 == 6 )
-                     {
-                        if ((getImage()  != rightJump1 && getImage() !=rightJump2 && getImage() != rightJump3) || isOnGround())
-                        {
-                            setImage(rightJump1);
-                        }
-                        else if (getImage() == rightJump1 )
-                        {
-                            setImage(rightJump2);
-                        }
-                        else if(getImage() == rightJump2 )
-                        {
-                            setImage(rightJump3);
-                        }
-                        else if ( getImage() != rightJump3 )
-                        {
-                            setImage(rightJump1);
-                        }
-                        moveCounter1 = 0;
-                    }
-                }
-                else if(!isFacedRight())
-                {
-                    moveCounter1++;
-                    if(moveCounter1 == 6 )
-                    {
-                        if ((getImage()  != leftJump1 && getImage() !=leftJump2 && getImage() != leftJump3) || isOnGround())
-                        {
-                            setImage(leftJump1);
-                        }
-                        else if (getImage() == leftJump1 )
-                        {
-                            setImage(leftJump2);
-                        }
-                        else if(getImage() == leftJump2 )
-                        {
-                            setImage(leftJump3);
-                        }
-                        else if ( getImage() != leftJump3 )
-                        {
-                            setImage(leftJump1);
-                        }
-                        moveCounter1 = 0;
-                    }
-                }
-              setLocation(getX(),getY()-height);
-          }
-    }
-    public Bar getHealthBar()
-    {
-        return healthBar;
-    }
-    public void heavyAttack()
-    {
-    }
-    public void labelFollow()
-    {
-        p2.setLocation(this.getX(),this.getY()-getImage().getHeight()/2-15);
-    }
-    public  void shoot(int speed, int damage)
-    {
-        if(Greenfoot.isKeyDown("."))
+        if(isOnGround() && jumped) 
+        {
+            jumped = false;//must have touched ground from previous jump 
+        }
+        if(Greenfoot.isKeyDown("up") && vSpeed > -1 && !hitSpring)
         {
             if(isFacedRight())
             {
-                moveCounter2++;
-                if(moveCounter2 == speed)
+                moveCounter1++;
+                if(moveCounter1 == 6 )
                 {
-                    if (getImage() == rightStand1 || getImage() == rightStand2 || getImage() == rightStand3
-                         || getImage() == moveRight1 || getImage()==moveRight2 || getImage()==moveRight3)
+                    if ((getImage()  != rightJump1 && getImage() !=rightJump2 && getImage() != rightJump3) || isOnGround())
                     {
-                        setImage(rightShoot1);
+                        setImage(rightJump1);
                     }
-                    else if (getImage() == rightShoot1 )
+                    else if (getImage() == rightJump1 )
                     {
-                        setImage(rightShoot2);
-                        //megaman shoots here
-                        megamanBuster.play();
-                        getWorld().addObject(new Bullet2(5), this.getX()+48, this.getY()-7);
+                        setImage(rightJump2);
                     }
-                    else if(getImage() == rightShoot2 )
+                    else if(getImage() == rightJump2 )
                     {
-                        setImage(rightShoot3);
+                        setImage(rightJump3);
                     }
-                    else if(getImage() == rightShoot3)
+                    else if ( getImage() != rightJump3 )
                     {
-                        setImage(rightShoot4);
+                        setImage(rightJump1);
                     }
-                    else if ( getImage() != rightShoot1 )
-                    {
-                        setImage(rightShoot1);
-                    }
-                    moveCounter2 = 0;
+                    moveCounter1 = 0;
                 }
             }
             else if(!isFacedRight())
             {
-                moveCounter2++;
-                if(moveCounter2 == speed)
+                moveCounter1++;
+                if(moveCounter1 == 6 )
                 {
-                    if (getImage() == leftStand1 || getImage() == leftStand2 || getImage() == leftStand3
-                         || getImage() == moveLeft1 || getImage()==moveLeft2 || getImage()==moveLeft3)
+                    if ((getImage()  != leftJump1 && getImage() !=leftJump2 && getImage() != leftJump3) || isOnGround())
                     {
-                        setImage(leftShoot1);
+                        setImage(leftJump1);
                     }
-                    else if (getImage() == leftShoot1 )
+                    else if (getImage() == leftJump1 )
                     {
-                        setImage(leftShoot2);
-                        //megaman shoots here
-                        megamanBuster.play();
-                        getWorld().addObject(new Bullet2(-5), this.getX()-48, this.getY()-7);
+                        setImage(leftJump2);
                     }
-                    else if(getImage() == leftShoot2 )
+                    else if(getImage() == leftJump2 )
+                    { 
+                        setImage(leftJump3);
+                    }
+                    else if ( getImage() != leftJump3 )
                     {
-                        setImage(leftShoot3);
+                        setImage(leftJump1);
                     }
-                    else if(getImage() == leftShoot3)
-                    {
-                        setImage(leftShoot4);
-                    }
-                    else if ( getImage() != leftShoot1 )
-                    {
-                        setImage(leftShoot1);
-                    }
-                    moveCounter2 = 0;
+                    moveCounter1 = 0;
                 }
             }
+            setLocation(getX(),getY()-height);
+            jumped = true;//is in air from jumping
         }
+        else if(vSpeed < 0) 
+        {//probably hit spring, so animate as if jumping up
+            if(isFacedRight())
+            {
+                setImage(rightJump1);
+            }
+            else
+            {
+                setImage(leftJump1);
+            }
+        }
+        else if(!isOnGround() && !specialAttackTrue && !lightAttackTrue && jumped == false)
+        {//animate falling off ledge
+            if(isFacedRight())
+            {
+                setImage(rightJump3);
+            }
+            else
+            {
+                setImage(leftJump3);
+            }
+        }
+    }
+
+    public Bar getHealthBar()
+    {
+        return healthBar;
+    }
+
+    public void specialAttack()
+    {
+    }
+
+    public void labelFollow()
+    {
+        p2.setLocation(this.getX(),this.getY()-getImage().getHeight()/2-15); 
+    }
+
+    public  void shoot(int speed, int damage)
+    {
+        moveCounter4++;
+        if(Greenfoot.isKeyDown("."))
+        {         
+            lightAttackTrue = true;
+        }
+        if(isFacedRight() && lightAttackTrue)
+        {
+            moveCounter2++;                
+            if (moveCounter2 == speed)
+            {
+                setImage(rightShoot1);
+            }
+            else if (moveCounter2 == (speed*2) )
+            {
+                setImage(rightShoot2);
+                //megaman shoots here
+                megamanBuster.play();
+                getWorld().addObject(new Bullet2(5), this.getX()+48, this.getY()-7);
+            }
+            else if(moveCounter2 == (speed*3) )
+            {
+                setImage(rightShoot3);
+            }
+            else if(moveCounter2 == (speed*4))
+            {
+                setImage(rightShoot4);
+                moveCounter2 = 0;//Shoot complete
+                lightAttackTrue =false;
+            }         
+        }
+        else if(!isFacedRight() && lightAttackTrue)
+        {
+            moveCounter2++;               
+            if (moveCounter2 == speed)
+            {
+                setImage(leftShoot1);
+            }
+            else if (moveCounter2 == (speed*2) )
+            {
+                setImage(leftShoot2);
+                //megaman shoots here
+                megamanBuster.play();
+                getWorld().addObject(new Bullet2(-5), this.getX()-48, this.getY()-7);
+            }
+            else if(moveCounter2 == (speed*3) )
+            {
+                setImage(leftShoot3);
+            }
+            else if(moveCounter2 == (speed*4))
+            {
+                setImage(leftShoot4); 
+                moveCounter2 = 0;//Shoot complete
+                lightAttackTrue =false;
+            }         
+        }
+
     }
 }
 

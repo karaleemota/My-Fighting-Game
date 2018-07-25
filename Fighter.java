@@ -1,5 +1,5 @@
 //Author: Karalee Mota
-import greenfoot.*;
+import greenfoot.*; 
 /**
  * Write a description of class Fighter here.
  * 
@@ -26,7 +26,7 @@ public abstract class Fighter extends Actor
     static protected GreenfootImage moveLeft1;
     static protected GreenfootImage moveLeft2;
     static protected GreenfootImage moveLeft3;
-    static protected GreenfootImage rightPunch1;
+    static protected GreenfootImage rightPunch1; 
     static protected GreenfootImage rightPunch2;
     static protected GreenfootImage rightPunch3;
     static protected GreenfootImage rightPunch4;
@@ -35,6 +35,8 @@ public abstract class Fighter extends Actor
     static protected GreenfootImage leftPunch3;
     static protected GreenfootImage leftPunch4;
     protected GreenfootSound punchSound;
+
+    protected boolean hitSpring = false;//tells when player is air borne from spring
     private int x;
     protected int lightAttackCnt = 0;//used to keep track of light attack
     protected boolean lightAttackTrue;//bool to determine if player is doing a light attack
@@ -47,7 +49,8 @@ public abstract class Fighter extends Actor
     protected boolean addedObject = false;
     public Bar healthBar;
     Fighter2 opponent;
-    World backCharacterWorld = new SelectCharacter();
+    SelectCharacter backCharacterWorld = IntroScreen.selectCharacterScreen;//char sel screen is reused
+    protected boolean jumped = false;//tells when player has jumped and not yet touched ground
     int groundHeight = getImage().getHeight()/2;//How far it is from the middle of the actor to the bottom  
     public Fighter()
     {
@@ -161,6 +164,8 @@ public abstract class Fighter extends Actor
                 {
                     opponent.healthBar.subtract(damage);
                     punchSound.play();
+                    //faced right punch, so push opponent to the right
+                    opponent.setLocation(opponent.getX()+4,opponent.getY());
                 }   
                 moveCounter2 = 0;//punch complete
                 lightAttackTrue =false;
@@ -189,6 +194,8 @@ public abstract class Fighter extends Actor
                 {           
                     opponent.healthBar.subtract(damage);
                     punchSound.play();
+                    //faced left punch, so push opponent to the left
+                    opponent.setLocation(opponent.getX()-4,opponent.getY());
                 }   
                 moveCounter2 = 0;//punch complete
                 lightAttackTrue =false;
@@ -198,7 +205,7 @@ public abstract class Fighter extends Actor
 
     public abstract void specialAttack();
 
-    protected boolean isOnGround()//checks if character is touching the ground
+    public boolean isOnGround()//checks if character is touching the ground
     {
         if(getOneObjectAtOffset(0,(getImage().getHeight()/2)+3,Platform.class)!=null)
         {
@@ -229,7 +236,6 @@ public abstract class Fighter extends Actor
             int newY = topOfPlatform - groundHeight; 
             setLocation (getX(), newY);
             vSpeed = 0;
-
         }
     }
 
@@ -308,15 +314,17 @@ public abstract class Fighter extends Actor
         {
             if(addedObject == false)
             {
-                w.addObject(new Player2Wins(),300,250);
-                addedObject = true;
+                w.addObject(new Player2Wins(),342,256);
+                addedObject = true; 
             }
             if(Greenfoot.isKeyDown("enter"))
             {
                 Greenfoot.playSound("enter.wav");
                 w.stopMusic();
                 Greenfoot.setWorld(backCharacterWorld);
+                backCharacterWorld.setEnterCounter(110);
             }
+
         }
     }
 
@@ -325,14 +333,25 @@ public abstract class Fighter extends Actor
         Spring spring = getOneObjectAtOffset(0,((getImage().getHeight()/2)+3),Spring.class);
         if(spring != null)//there is spring below fighter's feet
         {
+            hitSpring = true;
             spring.sprung = true;//make spring do spring action
             vSpeed = -23;//reverse gravity to push player up
+            jumped = false;
+        }
+        if(isOnGround())
+        {
+            hitSpring = false;//touched ground after being sprung
         }
     }
 
     public void checkForObjects()//checks for objects like springs,rings,ect..
     {
         checkForSpring();
+    }
+
+    public int getVSpeed()//returns 'gravity' speed of fighter
+    {
+        return vSpeed;
     }
 
     protected abstract void labelFollow();

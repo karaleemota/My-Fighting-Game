@@ -8,25 +8,45 @@ import greenfoot.*;
  */
 public class Pikachu extends Fighter
 {
+    //images
+    static GreenfootImage pikachuRightStand1 = new GreenfootImage("pikachuRightStand1.png");
+    static GreenfootImage pikachuRightStand2 = new GreenfootImage("pikachuRightStand2.png");
+    static GreenfootImage pikachuRightStand3 = new GreenfootImage("pikachuRightStand3.png");
+    static GreenfootImage pikachuLeftStand1 = new GreenfootImage("pikachuLeftStand1.png");
+    static GreenfootImage pikachuLeftStand2 = new GreenfootImage("pikachuLeftStand2.png");
+    static GreenfootImage pikachuLeftStand3 = new GreenfootImage("pikachuLeftStand3.png");
+    static GreenfootImage pikachuMoveRight1 = new GreenfootImage("pikachuMoveRight1.png");
+    static GreenfootImage pikachuMoveRight2 = new GreenfootImage("pikachuMoveRight2.png");
+    static GreenfootImage pikachuMoveRight3 = new GreenfootImage("pikachuMoveRight3.png");
+    static GreenfootImage pikachuMoveLeft1 = new GreenfootImage("pikachuMoveLeft1.png");
+    static GreenfootImage pikachuMoveLeft2 = new GreenfootImage("pikachuMoveLeft2.png");
+    static GreenfootImage pikachuMoveLeft3 = new GreenfootImage("pikachuMoveLeft3.png");
+    static GreenfootImage pikachuRightPunch1 = new GreenfootImage("pikachuRightPunch1.png");
+    static GreenfootImage pikachuRightPunch2 = new GreenfootImage("pikachuRightPunch2.png");
+    static GreenfootImage pikachuRightPunch3 = new GreenfootImage("pikachuRightPunch3.png");
+    static GreenfootImage pikachuRightPunch4 = new GreenfootImage("pikachuRightPunch4.png");
+    static GreenfootImage pikachuLeftPunch1 = new GreenfootImage("pikachuLeftPunch1.png");
+    static GreenfootImage pikachuLeftPunch2 = new GreenfootImage("pikachuLeftPunch2.png");
+    static GreenfootImage pikachuLeftPunch3 = new GreenfootImage("pikachuLeftPunch3.png");
+    static GreenfootImage pikachuLeftPunch4 = new GreenfootImage("pikachuLeftPunch4.png");
+    static GreenfootImage rightJump1 = new GreenfootImage("pikachuRightJump1.png");
+    static GreenfootImage rightThunderBolt1 = new GreenfootImage("pikachuRightThunderBolt1.png");
+    static GreenfootImage rightThunderBolt2 = new GreenfootImage("pikachuRightThunderBolt2.png");
+    static GreenfootImage rightThunderBolt3 = new GreenfootImage("pikachuRightThunderBolt3.png");
+    static GreenfootImage rightThunderBolt4 = new GreenfootImage("pikachuRightThunderBolt4.png");
+    static GreenfootImage leftThunderBolt1 = new GreenfootImage("pikachuLeftThunderBolt1.png");
+    static GreenfootImage leftThunderBolt2 = new GreenfootImage("pikachuLeftThunderBolt2.png");
+    static GreenfootImage leftThunderBolt3 = new GreenfootImage("pikachuLeftThunderBolt3.png");
+    static GreenfootImage leftThunderBolt4 = new GreenfootImage("pikachuLeftThunderBolt4.png");
+    static GreenfootImage leftJump1 = new GreenfootImage("pikachuLeftJump1.png");
+    //sounds
+    static GreenfootSound pikachuPunchSound = new GreenfootSound("pikachuPunch.wav");
+    
     private int moveanimateSpeed;
     private int moveCounter2;
     private char boltTimer;//limits amt of bolts at a time
     private int animateSpeed = 5;//animateSpeed defines how fast goku will animate
     
-    GreenfootImage rightJump1;
-    GreenfootImage leftJump1;
-    private static GreenfootImage rightThunderBolt1 = new GreenfootImage("pikachuRightThunderBolt1.png");
-    private static GreenfootImage rightThunderBolt2 = new GreenfootImage("pikachuRightThunderBolt2.png");
-    private static GreenfootImage rightThunderBolt3 = new GreenfootImage("pikachuRightThunderBolt3.png");
-    private static GreenfootImage rightThunderBolt4 = new GreenfootImage("pikachuRightThunderBolt4.png");
-    private static GreenfootImage leftThunderBolt1 = new GreenfootImage("pikachuLeftThunderBolt1.png");
-    private static GreenfootImage leftThunderBolt2 = new GreenfootImage("pikachuLeftThunderBolt2.png");
-    private static GreenfootImage leftThunderBolt3 = new GreenfootImage("pikachuLeftThunderBolt3.png");
-    private static GreenfootImage leftThunderBolt4 = new GreenfootImage("pikachuLeftThunderBolt4.png");
-    /**
-     * Act - do whatever the pikachu wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
     public void act() 
     {
         groundHeight = getImage().getHeight()/2;//update image to use for gravity in fighter class
@@ -45,33 +65,31 @@ public class Pikachu extends Fighter
 
     public Pikachu()
     {
-        rightStand1 = new GreenfootImage("pikachuRightStand1.png");
-        rightStand2 = new GreenfootImage("pikachuRightStand2.png");
-        rightStand3 = new GreenfootImage("pikachuRightStand3.png");
-        leftStand1 = new GreenfootImage("pikachuLeftStand1.png");
-        leftStand2 = new GreenfootImage("pikachuLeftStand2.png");
-        leftStand3 = new GreenfootImage("pikachuLeftStand3.png");
-        moveRight1 = new GreenfootImage("pikachuMoveRight1.png");
-        moveRight2 = new GreenfootImage("pikachuMoveRight2.png");
-        moveRight3 = new GreenfootImage("pikachuMoveRight3.png");
-        moveLeft1 = new GreenfootImage("pikachuMoveLeft1.png");
-        moveLeft2 = new GreenfootImage("pikachuMoveLeft2.png");
-        moveLeft3 = new GreenfootImage("pikachuMoveLeft3.png");
-        rightPunch1 = new GreenfootImage("pikachuRightPunch1.png");
-        rightPunch2 = new GreenfootImage("pikachuRightPunch2.png");
-        rightPunch3 = new GreenfootImage("pikachuRightPunch3.png");
-        rightPunch4 = new GreenfootImage("pikachuRightPunch4.png");
-        leftPunch1 = new GreenfootImage("pikachuLeftPunch1.png");
-        leftPunch2 = new GreenfootImage("pikachuLeftPunch2.png");
-        leftPunch3 = new GreenfootImage("pikachuLeftPunch3.png");
-        leftPunch4 = new GreenfootImage("pikachuLeftPunch4.png");
-        rightJump1 = new GreenfootImage("pikachuRightJump1.png");
-        leftJump1 = new GreenfootImage("pikachuLeftJump1.png");
-        punchSound = new GreenfootSound("pikachuPunch.wav");
+        rightStand1 = pikachuRightStand1;
+        rightStand2 = pikachuRightStand2;
+        rightStand3 = pikachuRightStand3;
+        leftStand1 = pikachuLeftStand1;
+        leftStand2 = pikachuLeftStand2;
+        leftStand3 = pikachuLeftStand3;
+        moveRight1 = pikachuMoveRight1;
+        moveRight2 = pikachuMoveRight2;
+        moveRight3 = pikachuMoveRight3;
+        moveLeft1 = pikachuMoveLeft1;
+        moveLeft2 = pikachuMoveLeft2;
+        moveLeft3 = pikachuMoveLeft3;
+        rightPunch1 = pikachuRightPunch1;
+        rightPunch2 = pikachuRightPunch2;
+        rightPunch3 = pikachuRightPunch3;
+        rightPunch4 = pikachuRightPunch4;
+        leftPunch1 = pikachuLeftPunch1;
+        leftPunch2 = pikachuLeftPunch2;
+        leftPunch3 = pikachuLeftPunch3;
+        leftPunch4 = pikachuLeftPunch4;
+        punchSound = pikachuPunchSound;
         setImage(rightStand1);
 
-        setImage(rightStand1);
         specialAttackTrue = false;//tells when s.a key has been pressed from fighter class
+        lightAttackTrue = false;//tells when l.a. key has been pressed from fighter class
         moveanimateSpeed = 6;
         moveCounter2 = 0;
         boltTimer = 0;
@@ -93,7 +111,7 @@ public class Pikachu extends Fighter
     public void jump(int height)
     {
         
-        if(Greenfoot.isKeyDown("w") )
+        if(Greenfoot.isKeyDown("w") && vSpeed > -1 && !hitSpring )
         {
             if(isFacedRight())
             {

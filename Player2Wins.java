@@ -3,24 +3,16 @@ import java.awt.Color;
 import java.awt.Font;
 
 import java.util.Calendar;
-/**
- * Write a description of class player2Wins here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
+
 public class Player2Wins extends Actor
 {
     public static final float FONT_SIZE = 48.0f;
     public static final int WIDTH = 400; 
     public static final int HEIGHT = 300;
     
-    /**
-     * Create a score board with dummy result for testing.
-     */
     public Player2Wins()
     {
-        makeImage("\nPlayer 2 Wins!");
+        makeImage("\nPlayer 2 Wins!  Press Enter");
     }
 
     /**
@@ -28,7 +20,7 @@ public class Player2Wins extends Actor
      */
     public Player2Wins(int score)
     {
-        
+        makeImage("\nPlayer 2 Wins!  Press Enter");
     }
 
     /**

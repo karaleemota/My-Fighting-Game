@@ -49,10 +49,18 @@ public class SelectWorld extends World
     }
     public void enterCountDown()
     {
-        if(enterCounter > 0 )
+        if(enterCounter > 0)
         {
             enterCounter--;
         }
+    }
+    public int getEnterCounter()
+    {
+        return enterCounter;
+    }
+    public void setEnterCounter(int num)
+    {
+        enterCounter = num;
     }
     public boolean isClicked()
     {
@@ -136,6 +144,12 @@ public class SelectWorld extends World
     public void toFightWorld()
     {//takes player to world to fight
         worldSelected();
+        setWorld();
+        addPlayer1();
+        addPlayer2();
+    }
+    public void setWorld()//sets world based on one chosen in menu
+    {
         if(worldSelectedName == "world1")
         {
             fightWorld = new World1();
@@ -152,7 +166,10 @@ public class SelectWorld extends World
         {
             fightWorld = new World1();
         }
-        if(SelectCharacter.p1CharacterName == "Tails")
+    }
+    public void addPlayer1()//adds p1 to world based on character selected
+    {
+        if(SelectCharacter.p1CharacterName == "Tails")//player 1 added to world
         {
             fightWorld.addObject(new Tails(),100, 200);
         }
@@ -188,6 +205,44 @@ public class SelectWorld extends World
         {//in case some error happens, just play as sonic
             fightWorld.addObject(new Sonic(),100, 200);
         }
-        
+    }
+    public void addPlayer2()//adds p2 to world based on character selected
+    {
+        if(SelectCharacter.p2CharacterName == "Tails")//player 1 added to world
+        {
+            fightWorld.addObject(new Tails2(),500, 200);
+        }
+        else if(SelectCharacter.p2CharacterName == "Knuckles")
+        {
+            fightWorld.addObject(new Knuckles2(),500, 200);
+        }
+        else if(SelectCharacter.p2CharacterName == "Link")
+        {
+            fightWorld.addObject(new Link2(),500, 200);
+        }
+        else if(SelectCharacter.p2CharacterName == "Pikachu")
+        {
+            fightWorld.addObject(new Pikachu2(),500, 200);
+        }
+        else if(SelectCharacter.p2CharacterName == "Megaman")
+        {
+            fightWorld.addObject(new Megaman2(),500, 200);
+        }
+        else if(SelectCharacter.p2CharacterName == "Mario")
+        {
+            fightWorld.addObject(new Mario2(),500, 200);
+        }
+        else if(SelectCharacter.p2CharacterName == "Goku")
+        {
+            fightWorld.addObject(new Goku2(),500, 200);
+        }
+        else if(SelectCharacter.p2CharacterName == "MrIncredible")
+        {
+            fightWorld.addObject(new MrIncredible2(),500, 200);
+        }
+        else//SONIC
+        {//in case some error happens, just play as sonic
+            fightWorld.addObject(new Sonic2(),500, 200);
+        }
     }
 }

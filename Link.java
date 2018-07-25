@@ -112,6 +112,7 @@ public class Link extends Fighter
         moveCounter2 = 0;
         carryingBomb = false;//not carrying bom when starting
         specialAttackTrue = false;//tells when s.a key has been pressed from fighter class
+        lightAttackTrue = false;//tells when l.a. key has been pressed from fighter class
         p1 = new P1();
         counter = 0;
         healthBar = (new Bar("Link","HP",100,100));
@@ -197,7 +198,7 @@ public class Link extends Fighter
     public void jump(int height)
     {
         
-        if(Greenfoot.isKeyDown("w") && !carryingBomb)//cant jump while carrying bomb
+        if(Greenfoot.isKeyDown("w") && !carryingBomb && vSpeed > -1 && !hitSpring)//cant jump while carrying bomb
         {
             if(isFacedRight())
             {
@@ -209,7 +210,7 @@ public class Link extends Fighter
             }
             setLocation(getX(),getY()-height);
         }
-        else if(!isOnGround() && !specialAttackTrue && !lightAttackTrue)//animate falling off ledge
+        else if(!isOnGround() && !specialAttackTrue && !lightAttackTrue && !carryingBomb)//animate falling off ledge
         {
             if(isFacedRight())
             {
@@ -218,6 +219,17 @@ public class Link extends Fighter
             else
             {
                 setImage(leftJump1);
+            }
+        }
+        else if(!isOnGround() && !specialAttackTrue && !lightAttackTrue && carryingBomb && !throwBomb)//is falling and carrying bomb
+        {
+            if(isFacedRight())
+            {
+                setImage(linkRightThrow1);
+            }
+            else
+            {
+                setImage(linkLeftThrow1);
             }
         }
     }

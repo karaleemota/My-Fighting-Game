@@ -125,7 +125,7 @@ public class Mario2 extends Fighter2
               setLocation(getX(),getY()-height);
           }
     }
-    public void heavyAttack()
+    public void specialAttack()
     {
     }
     public void labelFollow()

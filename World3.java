@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Write a description of class World3 here. 
  * 
  * @author Karalee Mota
- * @version 7/18/18
+ * @version 7/18/18 
  */
 public class World3 extends FightWorld
 {
@@ -19,9 +19,9 @@ public class World3 extends FightWorld
     static Spring spring = new Spring();
     static PalmTree palmTree = new PalmTree();
     
-    Ring ring1 = new Ring();
-    Ring ring2 = new Ring();
-    Ring ring3 = new Ring();
+    Ring ring1 = new Ring(1700);
+    Ring ring2 = new Ring(-1);//will not respawn
+    Ring ring3 = new Ring(1300);
     public World3()
     {
        super(684, 513, 1);

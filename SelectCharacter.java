@@ -9,7 +9,7 @@ public class SelectCharacter extends World
     static GreenfootImage selectCharBackground = new GreenfootImage("Super_Smash_Bros_Lawl_Poster_Background.png");
     private boolean clicked; 
     private MouseInfo mouse;
-    World selectWorld = new SelectWorld();
+    static SelectWorld selectWorldScreen = new SelectWorld();
     static Cursor cursor = new Cursor();
     static Cursor2 cursor2 = new Cursor2();
     static CharacterPortrait sonicPortrait = new SonicPortrait();
@@ -29,7 +29,7 @@ public class SelectCharacter extends World
     {    
         //setBackground(selectCharBackground);
         super(684, 513, 1);
-        enterCounter = 100;
+        enterCounter = 0;
         
         addObject(sonicPortrait,135,85);
         addObject(tailsPortrait,338,85);
@@ -57,10 +57,10 @@ public class SelectCharacter extends World
         if (enterCounter == 0 && Greenfoot.isKeyDown("enter"))
         {
             Greenfoot.playSound("enter.wav");
-            Greenfoot.setWorld(selectWorld); 
+            selectWorldScreen.setEnterCounter(110);
+            Greenfoot.setWorld(selectWorldScreen); 
             p1CursorCharacter();
             p2CursorCharacter();
-            //bgmusic.stop();
         }
     }
     public GreenfootSound getbgmusic()
@@ -69,10 +69,18 @@ public class SelectCharacter extends World
     }
     public void enterCountDown()
     {
-        if(enterCounter > 0 )
+        if(enterCounter > 0)
         {
             enterCounter--;
         }
+    }
+    public int getEnterCounter()
+    {
+        return enterCounter;
+    }
+    public void setEnterCounter(int num)
+    {
+        enterCounter = num;
     }
     public boolean isClicked()
     {

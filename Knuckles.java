@@ -9,12 +9,32 @@ import greenfoot.*;
 public class Knuckles extends Fighter
 {
     private int moveCounter1 = 0;
-    static GreenfootImage rightJump1;
-    static GreenfootImage rightJump2;
-    static GreenfootImage rightJump3;
-    static GreenfootImage leftJump1;
-    static GreenfootImage leftJump2;
-    static GreenfootImage leftJump3;
+    static GreenfootImage rightJump1 = new GreenfootImage("knucklesRightJump1.png");
+    static GreenfootImage rightJump2 = new GreenfootImage("knucklesRightJump2.png");
+    static GreenfootImage rightJump3 = new GreenfootImage("knucklesRightJump3.png");
+    static GreenfootImage leftJump1 = new GreenfootImage("knucklesLeftJump1.png");
+    static GreenfootImage leftJump2 = new GreenfootImage("knucklesLeftJump2.png");
+    static GreenfootImage leftJump3 = new GreenfootImage("knucklesLeftJump3.png"); 
+    static GreenfootImage knucklesRightStand1 = new GreenfootImage("knucklesRightStand1.gif");
+    static GreenfootImage knucklesRightStand2 = new GreenfootImage("knucklesRightStand2.gif");
+    static GreenfootImage knucklesRightStand3 = new GreenfootImage("knucklesRightStand3.gif");
+    static GreenfootImage knucklesLeftStand1 = new GreenfootImage("knucklesLeftStand1.gif");
+    static GreenfootImage knucklesLeftStand2 = new GreenfootImage("knucklesLeftStand2.gif");
+    static GreenfootImage knucklesLeftStand3 = new GreenfootImage("knucklesLeftStand3.gif");
+    static GreenfootImage knucklesMoveRight1 = new GreenfootImage("knucklesMoveRight1.gif");
+    static GreenfootImage knucklesMoveRight2 = new GreenfootImage("knucklesMoveRight2.gif");
+    static GreenfootImage knucklesMoveRight3 = new GreenfootImage("knucklesMoveRight3.gif");
+    static GreenfootImage knucklesMoveLeft1 = new GreenfootImage("knucklesMoveLeft1.gif");
+    static GreenfootImage knucklesMoveLeft2 = new GreenfootImage("knucklesMoveLeft2.gif");
+    static GreenfootImage knucklesMoveLeft3 = new GreenfootImage("knucklesMoveLeft3.gif");
+    static GreenfootImage knucklesRightPunch1 = new GreenfootImage("knucklesRightPunch1.gif");
+    static GreenfootImage knucklesRightPunch2 = new GreenfootImage("knucklesRightPunch2.gif");
+    static GreenfootImage knucklesRightPunch3 = new GreenfootImage("knucklesRightPunch3.gif");
+    static GreenfootImage knucklesRightPunch4 = new GreenfootImage("knucklesRightPunch4.gif");
+    static GreenfootImage knucklesLeftPunch1 = new GreenfootImage("knucklesLeftPunch1.gif");
+    static GreenfootImage knucklesLeftPunch2 = new GreenfootImage("knucklesLeftPunch2.gif");
+    static GreenfootImage knucklesLeftPunch3 = new GreenfootImage("knucklesLeftPunch3.gif");
+    static GreenfootImage knucklesLeftPunch4 = new GreenfootImage("knucklesLeftPunch4.gif");
     public void act() 
     {
         groundHeight = getImage().getHeight()/2;//update image to use for gravity in fighter class
@@ -32,36 +52,31 @@ public class Knuckles extends Fighter
 
     public Knuckles()
     {
-        rightStand1 = new GreenfootImage("knucklesRightStand1.gif");
-        rightStand2 = new GreenfootImage("knucklesRightStand2.gif");
-        rightStand3 = new GreenfootImage("knucklesRightStand3.gif");
-        leftStand1 = new GreenfootImage("knucklesLeftStand1.gif");
-        leftStand2 = new GreenfootImage("knucklesLeftStand2.gif");
-        leftStand3 = new GreenfootImage("knucklesLeftStand3.gif");
-        moveRight1 = new GreenfootImage("knucklesMoveRight1.gif");
-        moveRight2 = new GreenfootImage("knucklesMoveRight2.gif");
-        moveRight3 = new GreenfootImage("knucklesMoveRight3.gif");
-        moveLeft1 = new GreenfootImage("knucklesMoveLeft1.gif");
-        moveLeft2 = new GreenfootImage("knucklesMoveLeft2.gif");
-        moveLeft3 = new GreenfootImage("knucklesMoveLeft3.gif");
-        rightPunch1 = new GreenfootImage("knucklesRightPunch1.gif");
-        rightPunch2 = new GreenfootImage("knucklesRightPunch2.gif");
-        rightPunch3 = new GreenfootImage("knucklesRightPunch3.gif");
-        rightPunch4 = new GreenfootImage("knucklesRightPunch4.gif");
-        leftPunch1 = new GreenfootImage("knucklesLeftPunch1.gif");
-        leftPunch2 = new GreenfootImage("knucklesLeftPunch2.gif");
-        leftPunch3 = new GreenfootImage("knucklesLeftPunch3.gif");
-        leftPunch4 = new GreenfootImage("knucklesLeftPunch4.gif");
-        rightJump1 = new GreenfootImage("knucklesRightJump1.png");
-        rightJump2 = new GreenfootImage("knucklesRightJump2.png");
-        rightJump3 = new GreenfootImage("knucklesRightJump3.png");
-        leftJump1 = new GreenfootImage("knucklesLeftJump1.png");
-        leftJump2 = new GreenfootImage("knucklesLeftJump2.png");
-        leftJump3 = new GreenfootImage("knucklesLeftJump3.png");
+        rightStand1 = knucklesRightStand1;
+        rightStand2 = knucklesRightStand2;
+        rightStand3 = knucklesRightStand3;
+        leftStand1 = knucklesLeftStand1;
+        leftStand2 = knucklesLeftStand2;
+        leftStand3 = knucklesLeftStand3;
+        moveRight1 = knucklesMoveRight1;
+        moveRight2 = knucklesMoveRight2;
+        moveRight3 = knucklesMoveRight3;
+        moveLeft1 = knucklesMoveLeft1;
+        moveLeft2 = knucklesMoveLeft2;
+        moveLeft3 = knucklesMoveLeft3;
+        rightPunch1 = knucklesRightPunch1;
+        rightPunch2 = knucklesRightPunch2;
+        rightPunch3 = knucklesRightPunch3;
+        rightPunch4 = knucklesRightPunch4;
+        leftPunch1 = knucklesLeftPunch1;
+        leftPunch2 = knucklesLeftPunch2;
+        leftPunch3 = knucklesLeftPunch3;
+        leftPunch4 = knucklesLeftPunch4;
         punchSound = new GreenfootSound("knucklesPunch.wav");
 
         setImage(rightStand1);
         specialAttackTrue = false;//tells when s.a key has been pressed from fighter class
+        lightAttackTrue = false;//tells when l.a. key has been pressed from fighter class
         moveSpeed = 4;
         p1 = new P1();
         healthBar = (new Bar("Knuckles","HP",100,100));
@@ -69,8 +84,11 @@ public class Knuckles extends Fighter
 
     public void jump(int height)
     {
-        
-        if(Greenfoot.isKeyDown("w") )
+        if(isOnGround() && jumped) 
+        {
+            jumped = false;//must have touched ground from previous jump 
+        }
+        if(Greenfoot.isKeyDown("w") && vSpeed > -1 && !hitSpring)
         {
             if(isFacedRight())
             {
@@ -121,8 +139,20 @@ public class Knuckles extends Fighter
                 }
             }
             setLocation(getX(),getY()-height);
+            jumped = true;//is in air from jumping
         }
-        else if(!isOnGround() && !specialAttackTrue && !lightAttackTrue && getImage()!=rightJump3 && getImage()!=leftJump3)
+        else if(vSpeed < 0)
+        {//probably hit spring, so animate as if jumping up
+            if(isFacedRight())
+            {
+                setImage(rightJump1);
+            }
+            else
+            {
+                setImage(leftJump1);
+            }
+        }
+        else if(!isOnGround() && !specialAttackTrue && !lightAttackTrue && jumped == false)
         {//animate falling off ledge
             if(isFacedRight())
             {

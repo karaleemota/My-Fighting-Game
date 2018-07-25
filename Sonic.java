@@ -8,14 +8,37 @@ import greenfoot.*;
  */
 public class Sonic extends Fighter
 {
+    //images
+    static GreenfootImage sonicRightStand1 = new GreenfootImage("sonicRightStand1.gif");
+    static GreenfootImage sonicRightStand2 = new GreenfootImage("sonicRightStand2.gif");
+    static GreenfootImage sonicRightStand3 = new GreenfootImage("sonicRightStand3.gif");
+    static GreenfootImage sonicLeftStand1 = new GreenfootImage("sonicLeftStand1.gif");
+    static GreenfootImage sonicLeftStand2 = new GreenfootImage("sonicLeftStand2.gif");
+    static GreenfootImage sonicLeftStand3 = new GreenfootImage("sonicLeftStand3.gif");
+    static GreenfootImage sonicMoveRight1 = new GreenfootImage("sonicMoveRight1.gif");
+    static GreenfootImage sonicMoveRight2 = new GreenfootImage("sonicMoveRight2.gif");
+    static GreenfootImage sonicMoveRight3 = new GreenfootImage("sonicMoveRight3.gif");
+    static GreenfootImage sonicMoveLeft1 = new GreenfootImage("sonicMoveLeft1.gif");
+    static GreenfootImage sonicMoveLeft2 = new GreenfootImage("sonicMoveLeft2.gif");
+    static GreenfootImage sonicMoveLeft3 = new GreenfootImage("sonicMoveLeft3.gif");
+    static GreenfootImage sonicRightPunch1 = new GreenfootImage("sonicRightPunch1.gif");
+    static GreenfootImage sonicRightPunch2 = new GreenfootImage("sonicRightPunch2.gif");
+    static GreenfootImage sonicRightPunch3 = new GreenfootImage("sonicRightPunch3.gif");
+    static GreenfootImage sonicRightPunch4 = new GreenfootImage("sonicRightPunch4.gif");
+    static GreenfootImage sonicLeftPunch1 = new GreenfootImage("sonicLeftPunch1.gif");
+    static GreenfootImage sonicLeftPunch2 = new GreenfootImage("sonicLeftPunch2.gif");
+    static GreenfootImage sonicLeftPunch3 = new GreenfootImage("sonicLeftPunch3.gif");
+    static GreenfootImage sonicLeftPunch4 = new GreenfootImage("sonicLeftPunch4.gif");
+    static GreenfootImage rightJump1 = new GreenfootImage("sonicRightJump1.gif");
+    static GreenfootImage rightJump2 = new GreenfootImage("sonicRightJump2.gif");
+    static GreenfootImage rightJump3 = new GreenfootImage("sonicRightJump3.gif");
+    static GreenfootImage leftJump1 = new GreenfootImage("sonicLeftJump1.gif");
+    static GreenfootImage leftJump2 = new GreenfootImage("sonicLeftJump2.gif");
+    static GreenfootImage leftJump3 = new GreenfootImage("sonicLeftJump3.gif");
+    //sounds
+    static GreenfootSound sonicPunchSound = new GreenfootSound("sonicPunch.wav");
     private int moveSpeed;
     private int moveCounter1 = 0;
-    static GreenfootImage rightJump1;
-    static GreenfootImage rightJump2;
-    static GreenfootImage rightJump3;
-    static GreenfootImage leftJump1;
-    static GreenfootImage leftJump2;
-    static GreenfootImage leftJump3;
     /**
      * Act - do whatever the Sonic wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -37,36 +60,31 @@ public class Sonic extends Fighter
 
     public Sonic()
     {
-        rightStand1 = new GreenfootImage("sonicRightStand1.gif");
-        rightStand2 = new GreenfootImage("sonicRightStand2.gif");
-        rightStand3 = new GreenfootImage("sonicRightStand3.gif");
-        leftStand1 = new GreenfootImage("sonicLeftStand1.gif");
-        leftStand2 = new GreenfootImage("sonicLeftStand2.gif");
-        leftStand3 = new GreenfootImage("sonicLeftStand3.gif");
-        moveRight1 = new GreenfootImage("sonicMoveRight1.gif");
-        moveRight2 = new GreenfootImage("sonicMoveRight2.gif");
-        moveRight3 = new GreenfootImage("sonicMoveRight3.gif");
-        moveLeft1 = new GreenfootImage("sonicMoveLeft1.gif");
-        moveLeft2 = new GreenfootImage("sonicMoveLeft2.gif");
-        moveLeft3 = new GreenfootImage("sonicMoveLeft3.gif");
-        rightPunch1 = new GreenfootImage("sonicRightPunch1.gif");
-        rightPunch2 = new GreenfootImage("sonicRightPunch2.gif");
-        rightPunch3 = new GreenfootImage("sonicRightPunch3.gif");
-        rightPunch4 = new GreenfootImage("sonicRightPunch4.gif");
-        leftPunch1 = new GreenfootImage("sonicLeftPunch1.gif");
-        leftPunch2 = new GreenfootImage("sonicLeftPunch2.gif");
-        leftPunch3 = new GreenfootImage("sonicLeftPunch3.gif");
-        leftPunch4 = new GreenfootImage("sonicLeftPunch4.gif");
-        rightJump1 = new GreenfootImage("sonicRightJump1.gif");
-        rightJump2 = new GreenfootImage("sonicRightJump2.gif");
-        rightJump3 = new GreenfootImage("sonicRightJump3.gif");
-        leftJump1 = new GreenfootImage("sonicLeftJump1.gif");
-        leftJump2 = new GreenfootImage("sonicLeftJump2.gif");
-        leftJump3 = new GreenfootImage("sonicLeftJump3.gif");
-        punchSound = new GreenfootSound("sonicPunch.wav");
+        rightStand1 = sonicRightStand1;
+        rightStand2 = sonicRightStand2;
+        rightStand3 = sonicRightStand3;
+        leftStand1 = sonicLeftStand1;
+        leftStand2 = sonicLeftStand2;
+        leftStand3 = sonicLeftStand3;
+        moveRight1 = sonicMoveRight1;
+        moveRight2 = sonicMoveRight2;
+        moveRight3 = sonicMoveRight3;
+        moveLeft1 = sonicMoveLeft1;
+        moveLeft2 = sonicMoveLeft2;
+        moveLeft3 = sonicMoveLeft3;
+        rightPunch1 = sonicRightPunch1;
+        rightPunch2 = sonicRightPunch2;
+        rightPunch3 = sonicRightPunch3;
+        rightPunch4 = sonicRightPunch4;
+        leftPunch1 = sonicLeftPunch1;
+        leftPunch2 = sonicLeftPunch2;
+        leftPunch3 = sonicLeftPunch3;
+        leftPunch4 = sonicLeftPunch4;
+        punchSound = sonicPunchSound;
         setImage(rightStand1);
 
         specialAttackTrue = false;//tells when s.a key has been pressed from fighter class
+        lightAttackTrue = false;//tells when l.a. key has been pressed from fighter class
         moveSpeed = 7;
         p1 = new P1();
         healthBar = (new Bar("Sonic","HP",100,100));
@@ -74,8 +92,11 @@ public class Sonic extends Fighter
 
     public void jump(int height)
     {
-
-        if(Greenfoot.isKeyDown("w") && vSpeed > -1)
+        if(isOnGround() && jumped) 
+        {
+            jumped = false;//must have touched ground from previous jump 
+        }
+        if(Greenfoot.isKeyDown("w") && vSpeed > -1 && !hitSpring)
         {
             if(isFacedRight())
             {
@@ -126,8 +147,20 @@ public class Sonic extends Fighter
                 }
             }
             setLocation(getX(),getY()-height);
+            jumped = true;//is in air from jumping
         }
-        else if(!isOnGround() && !specialAttackTrue && !lightAttackTrue && getImage()!=rightJump3 && getImage()!=leftJump3)
+        else if(vSpeed < 0)
+        {//probably hit spring, so animate as if jumping up
+            if(isFacedRight())
+            {
+                setImage(rightJump1);
+            }
+            else
+            {
+                setImage(leftJump1);
+            }
+        }
+        else if(!isOnGround() && !specialAttackTrue && !lightAttackTrue && jumped == false)
         {//animate falling off ledge
             if(isFacedRight())
             {
@@ -161,4 +194,3 @@ public class Sonic extends Fighter
     }
 
 }
-

@@ -1,73 +1,82 @@
+//Author: Karalee Mota
 import greenfoot.*;
- 
 /**
- * Write a description of class Fighter here.
+ * Write a description of class Fighter2 here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Karalee Mota 
+ * @version 3.0.0 5/5/17
  */
 public abstract class Fighter2 extends Actor
 {
     public void act() 
     {
-        
+
     }  
-    int vSpeed = 1;
-    protected P2 p2; //p2 label over players head
-    protected GreenfootImage rightStand1;
-    protected GreenfootImage rightStand2;
-    protected GreenfootImage rightStand3;
-    protected GreenfootImage leftStand1;
-    protected GreenfootImage leftStand2;
-    protected GreenfootImage leftStand3;
-    protected GreenfootImage moveRight1;
-    protected GreenfootImage moveRight2;
-    protected GreenfootImage moveRight3;
-    protected GreenfootImage moveLeft1;
-    protected GreenfootImage moveLeft2;
-    protected GreenfootImage moveLeft3;
-    protected GreenfootImage rightPunch1;
-    protected GreenfootImage rightPunch2;
-    protected GreenfootImage rightPunch3;
-    protected GreenfootImage rightPunch4;
-    protected GreenfootImage leftPunch1;
-    protected GreenfootImage leftPunch2;
-    protected GreenfootImage leftPunch3;
-    protected GreenfootImage leftPunch4;
+    protected int vSpeed = 1;
+    static protected P2 p2; //p2 label over players head
+    static protected GreenfootImage rightStand1;//all images to animate
+    static protected GreenfootImage rightStand2;
+    static protected GreenfootImage rightStand3;
+    static protected GreenfootImage leftStand1;
+    static protected GreenfootImage leftStand2;
+    static protected GreenfootImage leftStand3;
+    static protected GreenfootImage moveRight1;
+    static protected GreenfootImage moveRight2;
+    static protected GreenfootImage moveRight3;
+    static protected GreenfootImage moveLeft1;
+    static protected GreenfootImage moveLeft2;
+    static protected GreenfootImage moveLeft3;
+    static protected GreenfootImage rightPunch1; 
+    static protected GreenfootImage rightPunch2;
+    static protected GreenfootImage rightPunch3;
+    static protected GreenfootImage rightPunch4;
+    static protected GreenfootImage leftPunch1;
+    static protected GreenfootImage leftPunch2;
+    static protected GreenfootImage leftPunch3;
+    static protected GreenfootImage leftPunch4;
     protected GreenfootSound punchSound;
+
+    protected boolean hitSpring = false;//tells when player is air borne from spring
     private int x;
+    protected int lightAttackCnt = 0;//used to keep track of light attack
+    protected boolean lightAttackTrue;//bool to determine if player is doing a light attack
+    protected boolean specialAttackTrue;//bool to determine if player is doing s.a. so animations dont conflict
     private int moveCounter1;
     private int moveCounter2;
     private int moveCounter3;
     protected int moveSpeed; //speed each character walks
-    boolean facedRight = true;
-    boolean gameOver = false;
+    boolean facedRight = false;//fighter2 initially faced left
     protected boolean addedObject = false;
     public Bar healthBar;
     Fighter opponent;
-    World backCharacterWorld = new SelectCharacter();
-    int groundHeight = getImage().getHeight()/2;//How far it is from the middle of the actor to the bottom
+    SelectCharacter backCharacterWorld = IntroScreen.selectCharacterScreen;//char sel screen is reused
+    protected boolean jumped = false;//tells when player has jumped and not yet touched ground
+    int groundHeight = getImage().getHeight()/2;//How far it is from the middle of the actor to the bottom  
     public Fighter2()
     {
-        
+
     }
+
     public Fighter2(int health)
     {
-        
+
     }
-    public void jump(int height)
+
+    protected void jump(int height)
     {
-          if(Greenfoot.isKeyDown("up"))
-          {
-              setLocation(getX(),getY()-height);
-          }
-    }
-    public void moveRight(int speed)
-    {
-        if(Greenfoot.isKeyDown("right") && !Greenfoot.isKeyDown("."))
+        if(Greenfoot.isKeyDown("up")) 
         {
-           setLocation(getX()+speed,getY());
-           if(isOnGround() && isFacedRight())
+            setLocation(10,10);
+            vSpeed = -1*height;//negative gravity speed will make Fighter2 go up
+        }
+    }
+
+    protected void moveRight(int speed)
+    {
+        if(Greenfoot.isKeyDown("right") && !Greenfoot.isKeyDown(".") && !lightAttackTrue && !specialAttackTrue)
+        {
+            setLocation(getX()+speed,getY());
+            if(isOnGround() && isFacedRight())
             {
                 moveCounter1++;
                 if(moveCounter1 == speed)
@@ -93,9 +102,10 @@ public abstract class Fighter2 extends Actor
             }
         }
     }
-    public void moveLeft(int speed)
+
+    protected void moveLeft(int speed)
     {
-        if(Greenfoot.isKeyDown("left") && !Greenfoot.isKeyDown("."))
+        if(Greenfoot.isKeyDown("left") && !Greenfoot.isKeyDown(".") && !lightAttackTrue && !specialAttackTrue)
         {
             setLocation(getX()-speed,getY());
             if(isOnGround() && isFacedRight()==false)
@@ -124,86 +134,80 @@ public abstract class Fighter2 extends Actor
             }
         }
     }
-    public  void lightAttack(int speed, int damage)
+
+    protected  void lightAttack(int speed, int damage)
     {
         if(Greenfoot.isKeyDown("."))
+        {         
+            lightAttackTrue = true;
+        }
+        if(isFacedRight() && lightAttackTrue)
         {
-            opponent = (Fighter)getOneIntersectingObject(Fighter.class);
-            if(isFacedRight())
+            moveCounter2++;                
+            if (moveCounter2 == speed)
             {
-                moveCounter2++;
-                if(moveCounter2 == speed)
-                {
-                    if (getImage() == rightStand1 || getImage() == rightStand2 || getImage() == rightStand3
-                         || getImage() == moveRight1 || getImage()==moveRight2 || getImage()==moveRight3)
-                    {
-                        setImage(rightPunch1);
-                    }
-                    else if (getImage() == rightPunch1 )
-                    {
-                        setImage(rightPunch2);
-                    }
-                    else if(getImage() == rightPunch2 )
-                    {
-                        setImage(rightPunch3);
-                    }
-                    else if(getImage() == rightPunch3)
-                    {
-                        setImage(rightPunch4);
-                        if(opponent!=null)
-                        {
-                            opponent.healthBar.subtract(damage);
-                            punchSound.play();
-                        }
-                    }
-                    else if ( getImage() != rightPunch1 )
-                    {
-                        setImage(rightPunch1);
-                    }
-                    moveCounter2 = 0;
-                }
+                setImage(rightPunch1);
             }
-            else if(!isFacedRight())
+            else if (moveCounter2 == (speed*2) )
             {
-                moveCounter2++;
-                if(moveCounter2 == speed)
-                {
-                    if (getImage() == leftStand1 || getImage() == leftStand2 || getImage() == leftStand3
-                         || getImage() == moveLeft1 || getImage()==moveLeft2 || getImage()==moveLeft3)
-                    {
-                        setImage(leftPunch1);
-                    }
-                    else if (getImage() == leftPunch1 )
-                    {
-                        setImage(leftPunch2);
-                    }
-                    else if(getImage() == leftPunch2 )
-                    {
-                        setImage(leftPunch3);
-                    }
-                    else if(getImage() == leftPunch3)
-                    {
-                        setImage(leftPunch4);
-                        if(opponent!=null)
-                        {
-                            opponent.healthBar.subtract(damage);
-                            punchSound.play();
-                        }
-                    }
-                    else if ( getImage() != leftPunch1 )
-                    {
-                        setImage(leftPunch1);
-                    }
-                    moveCounter2 = 0;
-                }
+                setImage(rightPunch2);
             }
+            else if(moveCounter2 == (speed*3) )
+            {
+                setImage(rightPunch3);
+            }
+            else if(moveCounter2 == (speed*4))
+            {
+                setImage(rightPunch4);
+                opponent = (Fighter)getOneIntersectingObject(Fighter.class);
+                if(opponent!=null)
+                {
+                    opponent.healthBar.subtract(damage);
+                    punchSound.play();
+                    //faced right punch, so push opponent to the right
+                    opponent.setLocation(opponent.getX()+4,opponent.getY());
+                }   
+                moveCounter2 = 0;//punch complete
+                lightAttackTrue =false;
+            }         
+        }
+        else if(!isFacedRight() && lightAttackTrue)
+        {
+            moveCounter2++;               
+            if (moveCounter2 == speed)
+            {
+                setImage(leftPunch1);
+            }
+            else if (moveCounter2 == (speed*2) )
+            {
+                setImage(leftPunch2);
+            }
+            else if(moveCounter2 == (speed*3) )
+            {
+                setImage(leftPunch3);
+            }
+            else if(moveCounter2 == (speed*4))
+            {
+                setImage(leftPunch4);
+                opponent = (Fighter)getOneIntersectingObject(Fighter.class);
+                if(opponent!=null)
+                {           
+                    opponent.healthBar.subtract(damage);
+                    punchSound.play();
+                    //faced left punch, so push opponent to the left
+                    opponent.setLocation(opponent.getX()-4,opponent.getY());
+                }   
+                moveCounter2 = 0;//punch complete
+                lightAttackTrue =false;
+            }         
         }
     }
-    public abstract void heavyAttack();
+
+    public abstract void specialAttack();
 
     public boolean isOnGround()//checks if character is touching the ground
     {
-        if(getOneObjectAtOffset(0,(getImage().getHeight()/2)-2,Platform.class)!=null)
+        if(getOneObjectAtOffset(0,(getImage().getHeight()/2)+3,Platform.class)!=null)
         {
             return true;
         }
@@ -213,7 +217,7 @@ public abstract class Fighter2 extends Actor
         }
     }
 
-    public void applyGravity()
+    protected void applyGravity()
     {   
         if(!isOnGround())
         { 
@@ -226,20 +230,20 @@ public abstract class Fighter2 extends Actor
         }
         else
         {
-           Actor platformBelow = getOneObjectAtOffset(0,(getImage().getHeight()/2)-2,Platform.class);
-            GreenfootImage platformImage = platformBelow.getImage();                //Get the platform's image
+            Actor platformBelow = getOneObjectAtOffset(0,((getImage().getHeight()/2)+3),Platform.class);
+            GreenfootImage platformImage = platformBelow.getImage();    //Get the platform's image
             int topOfPlatform = platformBelow.getY()-platformImage.getHeight()/2+5;
             int newY = topOfPlatform - groundHeight; 
             setLocation (getX(), newY);
             vSpeed = 0;
         }
     }
-    
-    public void block()
+
+    protected void block()
     {
-        
+
     }
-    
+
     public boolean isFacedRight()
     {
         if(Greenfoot.isKeyDown("right"))
@@ -252,14 +256,14 @@ public abstract class Fighter2 extends Actor
         }
         return facedRight;
     }
-    
-    public void animate()
+
+    protected void animate()
     {
         x = x+1;
         if (x == 8)
         {
             if(isOnGround() && isFacedRight() && !Greenfoot.isKeyDown("right") && !Greenfoot.isKeyDown(".")
-               && !Greenfoot.isKeyDown("left"))
+            && !Greenfoot.isKeyDown("left") && !lightAttackTrue && !specialAttackTrue)
             {
                 if (getImage() == rightStand1 )
                 {
@@ -274,9 +278,9 @@ public abstract class Fighter2 extends Actor
                     setImage(rightStand1);
                 }
             }
-            
+
             else if(isOnGround() && !isFacedRight() && !Greenfoot.isKeyDown("left") && !Greenfoot.isKeyDown(".")
-                    && !Greenfoot.isKeyDown("right"))
+            && !Greenfoot.isKeyDown("right") && !lightAttackTrue && !specialAttackTrue)
             {
                 if (getImage() == leftStand1 )
                 {
@@ -294,31 +298,59 @@ public abstract class Fighter2 extends Actor
             x = 0;
         }
     }
-    public void fallOffEdge()
+
+    protected void fallOffEdge()
     {
-        if(getY() > 447 )
+        if(getY() > 510 )
         {
             healthBar.setValue(0);
         }
     }
+
     public void Player1Wins()
     {
-        World1 w = (World1)getWorld();
+        FightWorld w = (FightWorld)getWorld();
         if(healthBar.getValue() == 0)
         {
             if(addedObject == false)
             {
-                w.addObject(new Player2Wins(),300,250);
-                addedObject = true;
+                w.addObject(new Player1Wins(),342,256);
+                addedObject = true; 
             }
             if(Greenfoot.isKeyDown("enter"))
             {
                 Greenfoot.playSound("enter.wav");
                 w.stopMusic();
                 Greenfoot.setWorld(backCharacterWorld);
+                backCharacterWorld.setEnterCounter(110);
             }
         }
+    }
+
+    public void checkForSpring()
+    {
+        Spring spring = getOneObjectAtOffset(0,((getImage().getHeight()/2)+3),Spring.class);
+        if(spring != null)//there is spring below Fighter2's feet
+        {
+            hitSpring = true;
+            spring.sprung = true;//make spring do spring action
+            vSpeed = -23;//reverse gravity to push player up
+            jumped = false;
         }
+        if(isOnGround())
+        {
+            hitSpring = false;//touched ground after being sprung
+        }
+    }
+
+    public void checkForObjects()//checks for objects like springs,rings,ect..
+    {
+        checkForSpring();
+    }
     
-    public abstract void labelFollow();
+    public int getVSpeed()//returns 'gravity' speed of Fighter2
+    {
+        return vSpeed;
+    }
+    protected abstract void labelFollow();
 }

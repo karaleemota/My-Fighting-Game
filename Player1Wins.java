@@ -4,25 +4,15 @@ import java.awt.Font;
 
 import java.util.Calendar;
 
-/**
- * The ScoreBoard is used to display results on the screen. It can display some
- * text and several numbers.
- * 
- * @author M Kolling
- * @version 1.0
- */
 public class Player1Wins extends Actor
 {
     public static final float FONT_SIZE = 48.0f;
     public static final int WIDTH = 400;
     public static final int HEIGHT = 300;
     
-    /**
-     * Create a score board with dummy result for testing.
-     */
-    public Player1Wins()
+    public Player1Wins() 
     {
-        makeImage("\nPlayer 1 Wins!");
+        makeImage("\nPlayer 1 Wins!\n  Press Enter");
     }
 
     /**

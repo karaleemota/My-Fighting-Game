@@ -10,10 +10,10 @@ public class World1 extends FightWorld
 {
     //Classic Smash Bros. Stage
     public static GreenfootSound world1Music = new GreenfootSound("brawlMenu1.wav");
-    static GreenfootImage world1Background = new GreenfootImage("world1Background.jpg");
+    static GreenfootImage world1Background = new GreenfootImage("world1.jpg");
     public World1()
     {    
-       super(684, 513, 1);
+       super(684, 513, 1); 
        //addObject(new PlatformTop(),304,306);
        addObject(new PlatformBottom(),343,406);
        setBackground(world1Background);

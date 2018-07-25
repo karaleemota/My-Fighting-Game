@@ -14,7 +14,19 @@ public class MrIncredible extends Fighter
     static protected GreenfootImage leftJump1;
     static protected GreenfootImage leftJump2;
     static protected GreenfootImage leftJump3;
+    private static GreenfootImage rightSA1 = new GreenfootImage("mrIncredibleRightSA1.png");//incredible's special attack images
+    private static GreenfootImage rightSA2 = new GreenfootImage("mrIncredibleRightSA2.png");//incredible's special attack images
+    private static GreenfootImage rightSA3 = new GreenfootImage("mrIncredibleRightSA3.png");//incredible's special attack images
+    private static GreenfootImage rightSA4 = new GreenfootImage("mrIncredibleRightSA4.png");//incredible's special attack images
+    private static GreenfootImage leftSA1 = new GreenfootImage("mrIncredibleLeftSA1.png");
+    private static GreenfootImage leftSA2 = new GreenfootImage("mrIncredibleLeftSA2.png");
+    private static GreenfootImage leftSA3 = new GreenfootImage("mrIncredibleLeftSA3.png");
+    private static GreenfootImage leftSA4 = new GreenfootImage("mrIncredibleLeftSA4.png");
+    
     private int moveCounter1;//to animate jump
+    private char slideTimer = 0;//limits time he can use slide special attack
+    private char moveCounter2 = 0;//time special attack animation
+    private int speed = 3;//speed defines how fast mrIncred will animate when attacking
     public void act() 
     {
         groundHeight = getImage().getHeight()/2;//update image to use for gravity in fighter class
@@ -22,6 +34,7 @@ public class MrIncredible extends Fighter
         animate();
         jump(10);
         lightAttack(5,4);
+        specialAttack();
         moveRight(moveSpeed);
         moveLeft(moveSpeed);
         labelFollow();
@@ -62,6 +75,7 @@ public class MrIncredible extends Fighter
 
         setImage(rightStand1);
         specialAttackTrue = false;//tells when s.a key has been pressed from fighter class
+        lightAttackTrue = false;//tells when l.a. key has been pressed from fighter class
         moveSpeed = 4;
         p1 = new P1();
         healthBar = (new Bar("Mr. Incredible","HP",100,100));
@@ -69,7 +83,7 @@ public class MrIncredible extends Fighter
 
     protected void addedToWorld(World world)
     {
-        world.addObject(healthBar, 125, 30);
+        world.addObject(healthBar, 152, 30);
         world.addObject(p1,getX(),getY()-getImage().getHeight()/2-15);
     }
 
@@ -80,12 +94,84 @@ public class MrIncredible extends Fighter
 
     public void specialAttack()
     {
+        slideTimer++;
+        if(Greenfoot.isKeyDown("o") && slideTimer >= 45)
+        {          
+            specialAttackTrue = true;
+        }
+        if(isFacedRight() && specialAttackTrue)
+        {
+            moveCounter2++;  
+            setLocation(this.getX()+4,this.getY());//make mr incredible slide while doing attack
+            if (moveCounter2 == speed)
+            {
+                setImage(rightSA1);
+            }
+            else if (moveCounter2 == (speed*2) )
+            {
+                setImage(rightSA2);
+            }
+            else if(moveCounter2 == (speed*3) )
+            {
+                setImage(rightSA3);//do SA here
+                opponent = (Fighter2)getOneIntersectingObject(Fighter2.class);
+                if(opponent!=null)
+                {
+                    opponent.healthBar.subtract(4);
+                    punchSound.play();
+                    //faced right punch, so push opponent to the right
+                    opponent.setLocation(opponent.getX()+19,opponent.getY());
+                }  
+            }
+            else if(moveCounter2 == (speed*4))
+            {
+                setImage(rightSA4);
+                moveCounter2 = 0;//slide complete
+                specialAttackTrue = false;
+                slideTimer = 0;//reset SA timer so goku cant use it for time amount
+            }         
+        }
+        else if(!isFacedRight() && specialAttackTrue)
+        {
+            moveCounter2++;   
+            setLocation(this.getX()-4,this.getY());//make mr incredible slide while doing attack
+            if (moveCounter2 == speed)
+            {
+                setImage(leftSA1);
+            }
+            else if (moveCounter2 == (speed*2) )
+            {
+                setImage(leftSA2);
+            }
+            else if(moveCounter2 == (speed*3) ) 
+            {
+                setImage(leftSA3);//do SA here
+                opponent = (Fighter2)getOneIntersectingObject(Fighter2.class);
+                if(opponent!=null)
+                {           
+                    opponent.healthBar.subtract(4);
+                    punchSound.play();
+                    //faced left punch, so push opponent to the left
+                    opponent.setLocation(opponent.getX()-19,opponent.getY());
+                } 
+            }
+            else if(moveCounter2 == (speed*4))
+            {
+                setImage(leftSA4);   
+                moveCounter2 = 0;//punch complete
+                specialAttackTrue =false;
+                slideTimer = 0;
+            }         
+        }
     }
 
     public void jump(int height)
     {   //mostly just animates jump
-        
-        if(Greenfoot.isKeyDown("w") )
+        if(isOnGround() && jumped) 
+        {
+            jumped = false;//must have touched ground from previous jump 
+        }
+        if(Greenfoot.isKeyDown("w") && vSpeed > -1 && !hitSpring)
         {
             if(isFacedRight())
             {
@@ -136,8 +222,20 @@ public class MrIncredible extends Fighter
                 }
             }
             setLocation(getX(),getY()-height);
+            jumped = true;//is in air from jumping
         }
-        else if(!isOnGround() && !specialAttackTrue && !lightAttackTrue && getImage()!=rightJump3 && getImage()!=leftJump3)
+        else if(vSpeed < 0)
+        {//probably hit spring, so animate as if jumping up
+            if(isFacedRight())
+            {
+                setImage(rightJump1);
+            }
+            else
+            {
+                setImage(leftJump1);
+            }
+        }
+        else if(!isOnGround() && !specialAttackTrue && !lightAttackTrue && jumped == false)
         {//animate falling off ledge
             if(isFacedRight())
             {

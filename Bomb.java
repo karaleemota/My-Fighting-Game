@@ -120,7 +120,7 @@ public class Bomb extends Actor
             { 
                 setLocation (getX() + xSpeed, getY() + ySpeed);
                 ySpeed += 1;//accelerate
-                if(ySpeed % 6 == 0)
+                if(ySpeed % 5 == 0)
                 {//buffer acceleration
                     ySpeed = ySpeed--;
                 }
@@ -171,13 +171,13 @@ public class Bomb extends Actor
         {
             if(explosionSoundPlayed == false)
             {
-                setImage(bombExplosion);
                 explosionSound.play();
                 explosionSoundPlayed = true;
+                setImage(bombExplosion);
             }
             animateExplosionTimer++;
         }
-        if(animateExplosionTimer == 4)
+        if(animateExplosionTimer == 6)
         {
             removed = true;
             removeMe();
