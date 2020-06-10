@@ -6,3 +6,6 @@ Player 2: ↑=jump  ←=left  →=right  <=special attack  >=light attack<br />
 To play the game, download this 'fightingGame.jar' file from the link<br />
 below and run it.<br />
 https://www.dropbox.com/s/oafuya7gwo5pfpg/fightingGame.jar?dl=0
+
+![alt text](https://github.com/karaleemota/Super-Smash-Java/blob/master/images/SunsetHillsGokuVSSonicScreenshot.PNG)
+![alt text](https://github.com/karaleemota/Super-Smash-Java/blob/master/images/ChooseYourCharacterScreenshot.PNG)
